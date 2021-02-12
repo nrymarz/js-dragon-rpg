@@ -1,0 +1,5 @@
+#player{
+    width: 20px;
+    height: 32px;
+    background: url('lib/images/character.png') 0 0;
+}
