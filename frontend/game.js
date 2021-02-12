@@ -1,25 +1,25 @@
 import Player from './lib/player.mjs'
+import Level from './lib/level.js'
 
 const canvas = document.querySelector("#game")
 const ctx = canvas.getContext("2d")
 
-const background = document.createElement('img')
-background.src = 'lib/images/backgrounddetailed1.png'
+const level = new Level('lib/images/backgrounddetailed1.png',canvas.width,canvas.height)
 let bgReady = false
-background.onload = function(){bgReady = true}
+level.background.onload = function(){bgReady = true}
 
 const player = new Player(100,canvas.width/2,canvas.height/2)
-let playerImg = document.createElement('img')
-playerImg.src = 'lib/images/character.png'
+
 
 let playerImgReady = false
-playerImg.onload = function(){playerImgReady = true}
+player.img.onload = function(){playerImgReady = true}
 
 const keysDown = {}
 addEventListener('keydown',e => keysDown[e.key] = true)
 addEventListener('keyup',e => delete keysDown[e.key])
 
 let then = Date.now()
+player.beginAnimation()
 document.addEventListener('DOMContentLoaded',main)
 
 function main(){
@@ -28,37 +28,19 @@ function main(){
     render()
     update(delta/1000)
     then = now
-
     requestAnimationFrame(main)
 }
 
 function render(){
     if(bgReady){
-        let pat = ctx.createPattern(background,'repeat')
-        ctx.rect(0,0,canvas.width, canvas.height)
-        ctx.fillStyle = pat
-        ctx.fill()
+        level.draw(ctx)
     }
     if(playerImgReady){
-        ctx.drawImage(playerImg,0,0,16,32,player.x,player.y,40,50)
+        player.draw(ctx)
     }
 }
 
 function update(modifier){
-    if('w' in keysDown){
-        player.y -= player.speed * modifier
-    }
-
-    if('s' in keysDown){
-        player.y += player.speed * modifier
-    }
-
-    if('a' in keysDown){
-        player.x -= player.speed * modifier
-    }
-
-    if('d' in keysDown){
-        player.x += player.speed * modifier
-    }
+  player.update(modifier,keysDown)
 }
 
