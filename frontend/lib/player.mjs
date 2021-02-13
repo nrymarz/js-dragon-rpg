@@ -34,13 +34,24 @@ class Player{
         }
     }
 
-    beginAnimation(){
-        let frame = 0;
-        setInterval( ()=>{
-            frame++
-            this.frameIndex[0] = frame % 4
-        },200)
+    beginStepAnimation(){
+        let frame = 0
+        const step = () =>{
+            frame ++
+            if(frame<15){
+                requestAnimationFrame(step)
+                return
+            }
+            frame = 0
+            this.frameIndex[0] += 1
+            if (this.frameIndex[0] === 4){
+                this.frameIndex[0] = 0
+            }
+            requestAnimationFrame(step)
+        }
+        requestAnimationFrame(step)
     }
+   
 
 }
 
