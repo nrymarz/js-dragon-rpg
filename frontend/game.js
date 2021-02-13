@@ -1,11 +1,11 @@
 import Player from './lib/player.mjs'
-import Level from './lib/level.js'
+import Level1 from './lib/level.js'
 
 
 const canvas = document.querySelector("#game")
 const ctx = canvas.getContext("2d")
 
-const level = new Level('lib/images/backgrounddetailed1.png',canvas.width,canvas.height)
+const level = new Level1(canvas.width,canvas.height)
 let bgReady = false
 level.background.onload = function(){bgReady = true}
 
@@ -31,6 +31,7 @@ function main(){
 }
 
 function render(){
+    ctx.clearRect(0,0,canvas.width,canvas.height)
     if(bgReady){
         level.draw(ctx)
     }

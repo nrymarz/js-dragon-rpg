@@ -34,7 +34,7 @@ class HardEnemy extends Enemy{
     }
 
     draw(ctx){
-        ctx.drawImage(this.image,200,0,100,110,this.x,this.y,100,150)
+        ctx.drawImage(this.image,200,0,100,110,this.x,this.y,150,225)
     }
 }
 
@@ -52,12 +52,39 @@ class Boss{
     constructor(x,y){
         this.x = x
         this.y = y
-        this.image = document.createElement('img')
-        this.image.src = "./lib/images/DAGRONS5.png"
+
+        const boss1Image = document.createElement('img')
+        boss1Image.src = "./lib/images/Boss1.png"
+        const boss2Image = document.createElement('img')
+        boss2Image.src = "./lib/images/Boss2.png"
+        const boss3Image = document.createElement('img')
+        boss3Image.src = "./lib/images/Boss3.png"
+
+        this.images = [boss1Image,boss2Image,boss3Image]
+        this.imageIndex = 0
+
     }
 
     draw(ctx){
-        ctx.drawImage(this.image,100,280,200,150,this.x,this.y,400,300)
+        ctx.drawImage(this.images[this.imageIndex],0,0,200,150,this.x,this.y,400,300)
+    }
+
+    beginAnimation(){
+        let frame = 0
+        const step = () =>{
+            frame ++
+            if(frame<15){
+                requestAnimationFrame(step)
+                return
+            }
+            frame = 0
+            this.imageIndex += 1
+            if (this.imageIndex === 3){
+                this.imageIndex = 0
+            }
+            requestAnimationFrame(step)
+        }
+        requestAnimationFrame(step)
     }
 }
 

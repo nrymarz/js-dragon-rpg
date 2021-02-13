@@ -11,25 +11,29 @@ class Player{
     draw(ctx){
         ctx.drawImage(this.img,this.frameIndex[0]*16,this.frameIndex[1]*32,16,32,this.x,this.y,40,50)
     }
-
+    
     update(modifier,keysDown){
         if('w' in keysDown){
             this.y -= this.speed * modifier
+            if (this.y<-20) this.y = -20
             this.frameIndex[1] = 2
         }
     
         if('s' in keysDown){
             this.y += this.speed * modifier
+            if (this.y>570) this.y = 570
             this.frameIndex[1] = 0
         }
     
         if('a' in keysDown){
             this.x -= this.speed * modifier
+            if (this.x<-20) this.x = -20
             this.frameIndex[1] = 3
         }
     
         if('d' in keysDown){
             this.x += this.speed * modifier
+            if (this.x>780) this.x = 780
             this.frameIndex[1] = 1
         }
     }

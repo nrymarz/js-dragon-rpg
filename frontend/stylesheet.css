@@ -1,5 +1,14 @@
-#player{
-    width: 20px;
-    height: 32px;
-    background: url('lib/images/character.png') 0 0;
+body{
+    background-color: black;
+}
+
+canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-style: solid;
+    border-color:darkgrey;
+    border-width: thick;
 }
