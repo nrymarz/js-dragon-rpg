@@ -62,6 +62,7 @@ class Boss{
 
         this.images = [boss1Image,boss2Image,boss3Image]
         this.imageIndex = 0
+        this.frame = 0 
 
     }
 
@@ -69,22 +70,15 @@ class Boss{
         ctx.drawImage(this.images[this.imageIndex],0,0,200,150,this.x,this.y,400,300)
     }
 
-    beginAnimation(){
-        let frame = 0
-        const step = () =>{
-            frame ++
-            if(frame<15){
-                requestAnimationFrame(step)
-                return
-            }
-            frame = 0
-            this.imageIndex += 1
-            if (this.imageIndex === 3){
+    animate(){
+        this.frame++
+        if(this.frame % 15 === 0){
+            this.imageIndex +=1
+            if(this.imageIndex === 3){
                 this.imageIndex = 0
             }
-            requestAnimationFrame(step)
         }
-        requestAnimationFrame(step)
+        requestAnimationFrame(this.animate.bind(this))
     }
 }
 

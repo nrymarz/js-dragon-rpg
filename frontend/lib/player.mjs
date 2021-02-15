@@ -39,24 +39,6 @@ class Player{
         }
     }
 
-    beginStepAnimation(){
-        let frame = 0
-        const step = () =>{
-            frame ++
-            if(frame<15){
-                requestAnimationFrame(step)
-                return
-            }
-            frame = 0
-            this.frameIndex[0] += 1
-            if (this.frameIndex[0] === 4){
-                this.frameIndex[0] = 0
-            }
-            requestAnimationFrame(step)
-        }
-        requestAnimationFrame(step)
-    }
-
     animate(){
         this.frame++
         if(this.frame % 15 === 0){
