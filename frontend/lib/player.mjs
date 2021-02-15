@@ -6,6 +6,7 @@ class Player{
         this.img = document.createElement('img')
         this.img.src = 'lib/images/character.png'
         this.frameIndex = [0,0]
+        this.frame = 0
     }
     
     draw(ctx){
@@ -54,6 +55,17 @@ class Player{
             requestAnimationFrame(step)
         }
         requestAnimationFrame(step)
+    }
+
+    animate(){
+        this.frame++
+        if(this.frame % 15 === 0){
+            this.frameIndex[0] +=1
+            if(this.frameIndex[0] === 4){
+                this.frameIndex[0] = 0
+            }
+        }
+        requestAnimationFrame(this.animate.bind(this))
     }
    
 

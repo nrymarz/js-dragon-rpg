@@ -18,7 +18,7 @@ addEventListener('keydown',e => keysDown[e.key] = true)
 addEventListener('keyup',e => delete keysDown[e.key])
 
 let then = Date.now()
-player.beginStepAnimation()
+player.animate()
 document.addEventListener('DOMContentLoaded',main)
 
 function main(){
