@@ -7,8 +7,8 @@ class Enemy{
     }
 
     draw(ctx){
-        //ctx.fillStyle = "#FF0000"
-        //ctx.fillRect(this.x,this.y,this.width,this.height)
+        ctx.fillStyle = "#FF0000"
+        ctx.fillRect(this.x,this.y,this.width,this.height)
         ctx.drawImage(this.image,this.spritePixelIndex[0],this.spritePixelIndex[1],this.spritePixelWidth,this.spritePixelHeight,this.x,this.y,this.width,this.height)
     }
 }
@@ -17,44 +17,44 @@ class Enemy{
 class EasyEnemy extends Enemy{
     constructor(){
         super()
-        this.width = 100
-        this.height = 100
-        this.spritePixelIndex=[0,160]
-        this.spritePixelWidth = 100
-        this.spritePixelHeight = 100
+        this.width = 50
+        this.height = 85
+        this.spritePixelIndex=[40,170]
+        this.spritePixelWidth = 40
+        this.spritePixelHeight = 70
     }
 }
 
 class MediumEnemy extends Enemy{
     constructor(){
         super()
-        this.width = 125
-        this.height = 180
-        this.spritePixelIndex=[0,0]
-        this.spritePixelWidth = 100
-        this.spritePixelHeight = 150
+        this.width = 90
+        this.height = 130
+        this.spritePixelIndex=[20,45]
+        this.spritePixelWidth = 70
+        this.spritePixelHeight = 85
     }
 }
 
 class HardEnemy extends Enemy{
     constructor(){
         super()
-        this.width = 150
-        this.height = 225
-        this.spritePixelIndex=[200,0]
-        this.spritePixelWidth = 100
-        this.spritePixelHeight = 110
+        this.width = 160
+        this.height = 160
+        this.spritePixelIndex=[220,25]
+        this.spritePixelWidth = 80
+        this.spritePixelHeight = 80
     }
 }
 
 class VeryHardEnemy extends Enemy{
     constructor(){
         super()
-        this.width = 400
-        this.height = 300
-        this.spritePixelIndex=[100,280]
-        this.spritePixelWidth = 200
-        this.spritePixelHeight = 150
+        this.width = 485
+        this.height = 200
+        this.spritePixelIndex=[105,295]
+        this.spritePixelWidth = 185
+        this.spritePixelHeight = 75
     }
 }
 

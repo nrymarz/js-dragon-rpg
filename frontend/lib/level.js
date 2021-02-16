@@ -6,7 +6,8 @@ class Level1 {
         this.background.src = './lib/images/Overworld.png'
         this.width = width
         this.height = height
-        this.enemies = [new EasyEnemy(), new MediumEnemy(), new HardEnemy()]
+        this.enemies = //[new EasyEnemy(), new MediumEnemy(), new HardEnemy()]
+        [new VeryHardEnemy()]
     }
 
     draw(ctx){
