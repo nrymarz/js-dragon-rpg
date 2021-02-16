@@ -7,7 +7,8 @@ class Level1 {
         this.width = width
         this.height = height
         this.enemies = //[new EasyEnemy(), new MediumEnemy(), new HardEnemy()]
-        [new VeryHardEnemy()]
+        [new Boss(0,0)]
+        this.enemies[0].animate()
     }
 
     draw(ctx){

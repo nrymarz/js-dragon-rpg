@@ -7,8 +7,6 @@ class Enemy{
     }
 
     draw(ctx){
-        ctx.fillStyle = "#FF0000"
-        ctx.fillRect(this.x,this.y,this.width,this.height)
         ctx.drawImage(this.image,this.spritePixelIndex[0],this.spritePixelIndex[1],this.spritePixelWidth,this.spritePixelHeight,this.x,this.y,this.width,this.height)
     }
 }
@@ -62,6 +60,8 @@ class Boss{
     constructor(x,y){
         this.x = x
         this.y = y
+        this.width = 525
+        this.height = 312
 
         const boss1Image = document.createElement('img')
         boss1Image.src = "./lib/images/Boss1.png"
@@ -77,7 +77,7 @@ class Boss{
     }
 
     draw(ctx){
-        ctx.drawImage(this.images[this.imageIndex],0,0,200,150,this.x,this.y,400,300)
+        ctx.drawImage(this.images[this.imageIndex],0,0,175,104,this.x,this.y,this.width,this.height)
     }
 
     animate(){

@@ -10,8 +10,6 @@ class Player{
     }
     
     draw(ctx){
-        ctx.fillStyle = "#FF0000"
-        ctx.fillRect(this.x,this.y,40,50)
         ctx.drawImage(this.img,this.frameIndex[0]*16,this.frameIndex[1]*32,16,32,this.x,this.y,40,50)
     }
     
