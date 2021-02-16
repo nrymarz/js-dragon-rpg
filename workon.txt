@@ -1,0 +1,11 @@
+Enemy hitboxes
+collision with enemies
+Enemy spawns not overlapping
+traversing screens
+additional levels
+markers/map
+gamestates
+battle ui
+basic combat
+abilities
+player levels
