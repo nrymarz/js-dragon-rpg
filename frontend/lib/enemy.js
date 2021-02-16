@@ -7,6 +7,8 @@ class Enemy{
     }
 
     draw(ctx){
+        //ctx.fillStyle = "#FF0000"
+        //ctx.fillRect(this.x,this.y,this.width,this.height)
         ctx.drawImage(this.image,this.spritePixelIndex[0],this.spritePixelIndex[1],this.spritePixelWidth,this.spritePixelHeight,this.x,this.y,this.width,this.height)
     }
 }

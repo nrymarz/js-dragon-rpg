@@ -42,6 +42,7 @@ function render(){
 
 function update(modifier){
     player.update(modifier,keysDown)
+    player.isColliding(level.enemies)
 }
 
 
