@@ -44,8 +44,8 @@ class Player{
     isColliding(enemies){
         enemies.forEach(enemy =>{
             if(
-                (this.x>enemy.x && this.x<enemy.x+enemy.width)
-                &&(this.y>enemy.y && this.y<enemy.y+enemy.height)
+                (this.x+40>enemy.x && this.x<enemy.x+enemy.width)
+                &&(this.y+50>enemy.y && this.y<enemy.y+enemy.height)
             ){console.log("Enemy Collision")}
         })
     }
