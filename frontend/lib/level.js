@@ -28,10 +28,9 @@ class Level1 {
     spawnEnemy(enemy){
         enemy.x = Math.floor(Math.random()*(800-enemy.width))
         enemy.y = Math.floor(Math.random()*(600-enemy.height))
-        while(((enemy.x+enemy.width>300 && enemy.x<500) && (enemy.y+enemy.height>200 && enemy.y<400))){
+        while(((enemy.x+enemy.width>300 && enemy.x<500) && (enemy.y+enemy.height>200 && enemy.y<400)) || enemy.isTouching(this.enemies)){
             enemy.x = Math.floor(Math.random()*(800-enemy.width))
             enemy.y = Math.floor(Math.random()*(600-enemy.height))
-            debugger
         }
     }
 }

@@ -11,9 +11,9 @@ class Enemy{
     }
 
     isTouching(enemies){
-        enemies.every(enemy => {
+        return enemies.some(enemy => {
             return ((this.x+this.width>enemy.x && this.x<enemy.x+enemy.width)
-            && (this.y+this.height>enemy.y && this.y<enemy.y+enemy.height)) || enemy === this
+            && (this.y+this.height>enemy.y && this.y<enemy.y+enemy.height)) && enemy !== this
         })
     }
 }
