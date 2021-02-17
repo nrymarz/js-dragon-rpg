@@ -1,9 +1,13 @@
-Enemy spawns not overlapping
-traversing screens
-additional levels
-markers/map
 gamestates
+inventory
 battle ui
 basic combat
 abilities
 player levels
+additional levels
+markers/map
+
+Game Instructions below canvas
+Backend Saving
+Users who've beaten the boss
+

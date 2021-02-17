@@ -7,6 +7,7 @@ class Player{
         this.img.src = 'lib/images/character.png'
         this.frameIndex = [0,0]
         this.frame = 0
+        this.touchingEdge = false
     }
     
     draw(ctx){
@@ -16,35 +17,33 @@ class Player{
     update(modifier,keysDown){
         if('w' in keysDown){
             this.y -= this.speed * modifier
-            if (this.y<-20) this.y = -20
+            if (this.y<-20) this.touchingEdge = true
             this.frameIndex[1] = 2
         }
     
         if('s' in keysDown){
             this.y += this.speed * modifier
-            if (this.y>570) this.y = 570
+            if (this.y>570) this.touchingEdge = true
             this.frameIndex[1] = 0
         }
     
         if('a' in keysDown){
             this.x -= this.speed * modifier
-            if (this.x<-20) this.x = -20
+            if (this.x<-20) this.touchingEdge = true
             this.frameIndex[1] = 3
         }
     
         if('d' in keysDown){
             this.x += this.speed * modifier
-            if (this.x>780) this.x = 780
+            if (this.x>780) this.touchingEdge = true
             this.frameIndex[1] = 1
         }
     }
 
-    isColliding(enemies){
-        enemies.forEach(enemy =>{
-            if(
-                (this.x+40>enemy.x && this.x<enemy.x+enemy.width)
-                &&(this.y+50>enemy.y && this.y<enemy.y+enemy.height)
-            ){console.log("Enemy Collision")}
+    isTouchingEnemies(enemies){
+        enemies.some(enemy =>{
+            (this.x+40>enemy.x && this.x<enemy.x+enemy.width)
+            &&(this.y+50>enemy.y && this.y<enemy.y+enemy.height)
         })
     }
 
