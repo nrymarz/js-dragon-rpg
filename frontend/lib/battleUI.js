@@ -7,7 +7,7 @@ class BattleUI{
         ctx.drawImage(this.image,0,0,800,600)
         ctx.fillStyle = 'black'
         ctx.fillRect(0,400,800,200)
-        ctx.drawImage(enemy.image,enemy.spritePixelIndex[0],enemy.spritePixelIndex[1],enemy.spritePixelWidth,enemy.spritePixelHeight,100,100,enemy.width*1.5,enemy.height*1.5)
+        ctx.drawImage(enemy.image,enemy.spritePixelIndex[0],enemy.spritePixelIndex[1],enemy.spritePixelWidth,enemy.spritePixelHeight,400-enemy.width*.75,200-enemy.height*.75,enemy.width*1.5,enemy.height*1.5)
     }
 }
 export default BattleUI

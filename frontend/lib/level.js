@@ -6,7 +6,7 @@ class Level1 {
         this.background.src = './lib/images/Overworld.png'
         this.width = width
         this.height = height
-        this.enemies = [new EasyEnemy(), new MediumEnemy()]
+        this.enemies = [new EasyEnemy(), new MediumEnemy(),new Boss(100,100)]
         this.enemies.forEach(enemy => this.spawnEnemy(enemy))
     }
 
