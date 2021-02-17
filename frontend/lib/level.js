@@ -6,9 +6,8 @@ class Level1 {
         this.background.src = './lib/images/Overworld.png'
         this.width = width
         this.height = height
-        this.enemies = //[new EasyEnemy(), new MediumEnemy(), new HardEnemy()]
-        [new Boss(0,0)]
-        this.enemies[0].animate()
+        this.enemies = [new EasyEnemy(), new MediumEnemy()]
+        this.enemies.forEach(enemy => this.spawnEnemy(enemy))
     }
 
     draw(ctx){
@@ -22,8 +21,18 @@ class Level1 {
             y=0
             ctx.drawImage(this.background,0,0,15,15,x,y,15,15)
             x += 15
-        }   
+        }
         this.enemies.forEach(enemy => enemy.draw(ctx))
+    }
+
+    spawnEnemy(enemy){
+        enemy.x = Math.floor(Math.random()*(800-enemy.width))
+        enemy.y = Math.floor(Math.random()*(600-enemy.height))
+        while(((enemy.x+enemy.width>300 && enemy.x<500) && (enemy.y+enemy.height>200 && enemy.y<400))){
+            enemy.x = Math.floor(Math.random()*(800-enemy.width))
+            enemy.y = Math.floor(Math.random()*(600-enemy.height))
+            debugger
+        }
     }
 }
 

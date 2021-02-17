@@ -50,7 +50,7 @@ class Player{
 
     animate(){
         this.frame++
-        if(this.frame % 15 === 0){
+        if(this.frame % 5 === 0){
             this.frameIndex[0] +=1
             if(this.frameIndex[0] === 4){
                 this.frameIndex[0] = 0

@@ -1,13 +1,20 @@
 class Enemy{
     constructor(){
-        this.x = Math.floor(Math.random()*600)
-        this.y = Math.floor(Math.random()*400)
+        this.x
+        this.y
         this.image = document.createElement('img')
         this.image.src = "./lib/images/DAGRONS5.png"
     }
 
     draw(ctx){
         ctx.drawImage(this.image,this.spritePixelIndex[0],this.spritePixelIndex[1],this.spritePixelWidth,this.spritePixelHeight,this.x,this.y,this.width,this.height)
+    }
+
+    isTouching(enemies){
+        enemies.every(enemy => {
+            return ((this.x+this.width>enemy.x && this.x<enemy.x+enemy.width)
+            && (this.y+this.height>enemy.y && this.y<enemy.y+enemy.height)) || enemy === this
+        })
     }
 }
 
