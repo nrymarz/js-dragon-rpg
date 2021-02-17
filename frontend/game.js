@@ -1,6 +1,7 @@
 import Player from './lib/player.mjs'
 import Level1 from './lib/level.js'
 import Inventory from './lib/inventory.js'
+import BattleUI from './lib/battleUI.js'
 
 
 const canvas = document.querySelector("#game")
@@ -14,6 +15,7 @@ let bgReady = false
 level.background.onload = function(){bgReady = true}
 
 const inventory = new Inventory()
+const battleUI = new BattleUI()
 
 const player = new Player(100,canvas.width/2,canvas.height/2)
 let playerImgReady = false
@@ -45,11 +47,14 @@ function main(){
         updateInventory()
         renderInventory()
     }
+    else if(GAMESTATE === "BATTLE"){
+        battleUI.draw(ctx)
+    }
     requestAnimationFrame(main)
 }
 
 function renderInventory(){
-    inventory.draw(ctx)
+    inventory.draw(ctx,player)
 }
 
 function updateInventory(){

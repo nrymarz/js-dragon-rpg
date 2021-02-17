@@ -1,5 +1,11 @@
 class Player{
     constructor(speed,x,y){
+        this.level = 1
+        this.hp = 100
+        this.mana = 50
+        this.attack = 10
+        this.spellPower = 5
+        this.xp = 0
         this.speed = speed
         this.x = x
         this.y = y
