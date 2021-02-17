@@ -1,5 +1,8 @@
-gamestates
-inventory
+items
+    health potions
+    damage boost potion
+    mana potion
+inventory ui
 battle ui
 basic combat
 abilities

@@ -43,7 +43,7 @@ function main(){
     }
     else if(GAMESTATE === "INVENTORY"){
         updateInventory()
-        renderInventory()  
+        renderInventory()
     }
     requestAnimationFrame(main)
 }
@@ -68,7 +68,7 @@ function renderMap(){
 function update(modifier){
     player.update(modifier,keysDown)
     if(player.isTouchingEnemies(level.enemies)){
-        console.log("enemy Collision")
+        GAMESTATE = "BATTLE"
     }
     if (player.touchingEdge){
         level = new Level1(canvas.width,canvas.height)
