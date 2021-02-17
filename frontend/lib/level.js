@@ -1,12 +1,18 @@
 import {EasyEnemy,MediumEnemy,HardEnemy,VeryHardEnemy,Boss} from './enemy.js'
 
-class Level1 {
+class Level{
     constructor(width,height){
-        this.background = document.createElement('img')
-        this.background.src = './lib/images/Overworld.png'
         this.width = width
         this.height = height
-        this.enemies = [new EasyEnemy(), new MediumEnemy(),new Boss(100,100)]
+    }
+}
+
+class Level1 extends Level {
+    constructor(width,height){
+        super(width,height)
+        this.background = document.createElement('img')
+        this.background.src = './lib/images/Overworld.png'
+        this.enemies = [new EasyEnemy(),new MediumEnemy()]
         this.enemies.forEach(enemy => this.spawnEnemy(enemy))
     }
 
@@ -35,4 +41,30 @@ class Level1 {
     }
 }
 
-export default Level1
+class BossLevel extends Level{
+    constructor(width,height){
+        super(width,height)
+        this.background = document.createElement('img')
+        this.background.src = './lib/images/Overworld.png'
+        this.enemies = [new Boss(100,100)]
+        this.enemies[0].animate()
+    }
+
+    draw(ctx){
+        let x = 0
+        let y = 0
+        while(x < this.width){
+            while(y<this.height){
+                ctx.drawImage(this.background,0,0,15,15,x,y,15,15)
+                y+=15
+            }
+            y=0
+            ctx.drawImage(this.background,0,0,15,15,x,y,15,15)
+            x += 15
+        }
+        this.enemies[0].draw(ctx)
+    }
+}
+
+
+export {Level1, BossLevel}

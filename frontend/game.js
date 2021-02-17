@@ -1,7 +1,7 @@
 import Player from './lib/player.mjs'
-import Level1 from './lib/level.js'
+import {Level1, BossLevel} from './lib/level.js'
 import Inventory from './lib/inventory.js'
-import BattleUI from './lib/battleUI.js'
+import {BattleUI, BossBattle} from './lib/battleUI.js'
 
 
 const canvas = document.querySelector("#game")
@@ -10,14 +10,14 @@ const ctx = canvas.getContext("2d")
 const GAMESTATES = ["MAP","BATTLE","INVENTORY"]
 let GAMESTATE = GAMESTATES[0]
 
-let level = new Level1(canvas.width,canvas.height)
+let level = new BossLevel(canvas.width,canvas.height)
 let bgReady = false
 level.background.onload = function(){bgReady = true}
 
 const inventory = new Inventory()
-const battleUI = new BattleUI()
+const battleUI = new BossBattle()
 
-const player = new Player(100,canvas.width/2,canvas.height/2)
+const player = new Player(100,canvas.width/2,550)
 let playerImgReady = false
 player.img.onload = function(){playerImgReady = true}
 
