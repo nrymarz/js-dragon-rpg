@@ -47,7 +47,7 @@ class Player{
     }
 
     isTouchingEnemies(enemies){
-        return enemies.some(enemy =>{
+        return enemies.find(enemy =>{
             return(this.x+40>enemy.x && this.x<enemy.x+enemy.width)
             &&(this.y+50>enemy.y && this.y<enemy.y+enemy.height)
         })

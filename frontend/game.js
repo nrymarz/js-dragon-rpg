@@ -48,7 +48,8 @@ function main(){
         renderInventory()
     }
     else if(GAMESTATE === "BATTLE"){
-        battleUI.draw(ctx)
+        const enemy = player.isTouchingEnemies(level.enemies)
+        battleUI.draw(ctx,enemy)
     }
     requestAnimationFrame(main)
 }
