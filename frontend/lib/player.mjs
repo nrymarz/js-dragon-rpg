@@ -1,3 +1,5 @@
+import { Attack } from "./abilites.js"
+
 class Player{
     constructor(speed,x,y){
         this.level = 1
@@ -14,6 +16,7 @@ class Player{
         this.frameIndex = [0,0]
         this.frame = 0
         this.touchingEdge = false
+        this.abilities = [new Attack()]
     }
     
     draw(ctx){

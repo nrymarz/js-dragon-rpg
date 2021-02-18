@@ -16,7 +16,6 @@ class Inventory {
         ctx.fillText("XP:" + player.xp,515,340)
         ctx.fillText("Attack:" + player.attack,515,360)
         ctx.fillText("Spell Power:" + player.spellPower,515,380)
-        ctx.drawImage("")
     }
 }
 

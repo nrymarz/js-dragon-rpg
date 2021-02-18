@@ -10,14 +10,15 @@ const ctx = canvas.getContext("2d")
 const GAMESTATES = ["MAP","BATTLE","INVENTORY"]
 let GAMESTATE = GAMESTATES[0]
 
-let level = new BossLevel(canvas.width,canvas.height)
+//let level = new BossLevel(canvas.width,canvas.height)
+let level = new Level1(canvas.width,canvas.height)
 let bgReady = false
 level.background.onload = function(){bgReady = true}
 
 const inventory = new Inventory()
-const battleUI = new BossBattle()
+let battleUI = null
 
-const player = new Player(100,canvas.width/2,550)
+const player = new Player(100,380,275)
 let playerImgReady = false
 player.img.onload = function(){playerImgReady = true}
 
@@ -32,10 +33,12 @@ addEventListener("keydown",e =>{
 })
 
 let then = Date.now()
+let frame = 0
 player.animate()
 document.addEventListener('DOMContentLoaded',main)
 
 function main(){
+    frame++
     if(GAMESTATE === "MAP"){
         const now = Date.now()
         const delta = now - then
@@ -48,8 +51,8 @@ function main(){
         renderInventory()
     }
     else if(GAMESTATE === "BATTLE"){
-        const enemy = player.isTouchingEnemies(level.enemies)
-        battleUI.draw(ctx,enemy)
+        battleUI.update(keysDown,frame)
+        battleUI.draw()
     }
     requestAnimationFrame(main)
 }
@@ -74,6 +77,7 @@ function renderMap(){
 function update(modifier){
     player.update(modifier,keysDown)
     if(player.isTouchingEnemies(level.enemies)){
+        battleUI = new BattleUI(ctx,player,player.isTouchingEnemies(level.enemies))
         GAMESTATE = "BATTLE"
     }
     if (player.touchingEdge){

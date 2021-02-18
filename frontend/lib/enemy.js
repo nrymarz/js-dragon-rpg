@@ -1,9 +1,12 @@
+import {Attack} from "./abilites.js"
+
 class Enemy{
     constructor(){
         this.x
         this.y
         this.image = document.createElement('img')
         this.image.src = "./lib/images/DAGRONS5.png"
+        this.abilities = [new Attack()]
     }
 
     draw(ctx){
@@ -27,6 +30,14 @@ class EasyEnemy extends Enemy{
         this.spritePixelIndex=[40,170]
         this.spritePixelWidth = 40
         this.spritePixelHeight = 70
+        this.hp = 30
+        this.attack = 15
+    }
+
+    fight(player){
+        let ability = this.abilities[Math.floor(Math.random()*this.abilities.length)]
+        this.abilities[0].use(this,player)
+        return ability
     }
 }
 
