@@ -25,13 +25,14 @@ class Inventory {
         ctx.fillStyle = "black"
         ctx.fillText("Stats",515,260)
         ctx.fillText("----------",515,280)
-        ctx.fillText("HP:" + this.player.hp,515,300)
-        ctx.fillText("Mana:" + this.player.mana,515,320)
-        ctx.fillText("XP:" + this.player.xp,515,340)
-        ctx.fillText("Attack:" + this.player.attack,515,360)
-        ctx.fillText("Spell Power:" + this.player.spellPower,515,380)
+        ctx.fillText("Level:" + this.player.level,515,300)
+        ctx.fillText("HP:" + this.player.hp,515,320)
+        ctx.fillText("Mana:" + this.player.mana,515,340)
+        ctx.fillText("XP:" + this.player.xp,515,360)
+        ctx.fillText("Attack:" + this.player.attack,515,380)
+        ctx.fillText("Spell Power:" + this.player.spellPower,515,400)
         ctx.fillText(new HealthPotion().description,140,275)
-        ctx.fillText(new ManaPotion().description,140,445)
+        ctx.fillText(new ManaPotion().description,140,425)
 
         ctx.font = '30px Comic Sans MS'
         ctx.fillText(`X ${this.healthPotions.length}`,240,225)

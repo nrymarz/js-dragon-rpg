@@ -1,8 +1,3 @@
-items
-    health potions
-    damage boost potion
-    mana potion
-inventory ui
 player levels
     additional abilities
 additional levels
