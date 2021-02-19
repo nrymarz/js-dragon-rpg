@@ -9,6 +9,7 @@ class BattleUI{
         this.abilityIndex = 0
         this.abilityIndexLockout = false
         this.frameLockout = 0
+        this.turnLockout = false
     }
 
     draw(){
@@ -28,6 +29,7 @@ class BattleUI{
     }
 
     update(keysDown,frame){
+        this.updateTurnLockout(keysDown)
         if(this.turn % 2 === 0){
             if (frame - this.frameLockout > 15){this.abilityIndexLockout = false}
             if("s" in keysDown && !this.abilityIndexLockout){
@@ -40,16 +42,22 @@ class BattleUI{
                 this.abilityIndexLockout = true
                 this.frameLockout = frame
             }
-            if("Enter" in keysDown){
+            if(keysDown["Enter"] && !this.turnLockout){
                 this.player.abilities[this.abilityIndex].use(this.player,this.enemy)
+                this.turnLockout = true
                 this.turn++
+                console.log("player attacked")
             }
         }
         else{
             let ability = this.enemy.fight(this.player)
-            console.log(`Enemy used ${ability.name}`)
+            console.log("enemy attacked")
             this.turn++
         }
+    }
+
+    updateTurnLockout(keysDown){
+        if(this.turnLockout === true) {this.turnLockout = ("Enter" in keysDown)}
     }
 }
 
