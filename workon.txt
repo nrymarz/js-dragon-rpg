@@ -1,16 +1,15 @@
-stats
-abilities
-basic combat
 items
     health potions
     damage boost potion
     mana potion
 inventory ui
 player levels
+    additional abilities
 additional levels
 markers/map
 
 Game Instructions below canvas
 Backend Saving
 Users who've beaten the boss
+Styling
 

@@ -1,19 +1,11 @@
 import {EasyEnemy,MediumEnemy,HardEnemy,VeryHardEnemy,Boss} from './enemy.js'
+import {HealthPotion, ManaPotion} from './items.js'
 
 class Level{
     constructor(width,height){
         this.width = width
         this.height = height
-    }
-}
-
-class Level1 extends Level {
-    constructor(width,height){
-        super(width,height)
-        this.background = document.createElement('img')
-        this.background.src = './lib/images/Overworld.png'
-        this.enemies = [new EasyEnemy(),new MediumEnemy()]
-        this.enemies.forEach(enemy => this.spawnEnemy(enemy))
+        this.item = null
     }
 
     draw(ctx){
@@ -29,6 +21,7 @@ class Level1 extends Level {
             x += 15
         }
         this.enemies.forEach(enemy => enemy.draw(ctx))
+        if (this.item){this.item.draw(ctx)}
     }
 
     spawnEnemy(enemy){
@@ -38,6 +31,27 @@ class Level1 extends Level {
             enemy.x = Math.floor(Math.random()*(800-enemy.width))
             enemy.y = Math.floor(Math.random()*(600-enemy.height))
         }
+    }
+}
+
+class Level1 extends Level {
+    constructor(width,height){
+        super(width,height)
+        this.background = document.createElement('img')
+        this.background.src = './lib/images/Overworld.png'
+        this.enemies = [new EasyEnemy(),new MediumEnemy()]
+        this.enemies.forEach(enemy => this.spawnEnemy(enemy))
+    }
+}
+
+class Level2 extends Level{
+    constructor(width,height){
+        super(width,height)
+        this.background = document.createElement('img')
+        this.background.src = './lib/images/Overworld.png'
+        this.enemies = [new HardEnemy(),new MediumEnemy()]
+        this.enemies.forEach(enemy => this.spawnEnemy(enemy))
+        this.item = (Math.random() > .5) ? new HealthPotion(width/2,height/2) : new ManaPotion(width/2,height/2)
     }
 }
 
@@ -67,4 +81,4 @@ class BossLevel extends Level{
 }
 
 
-export {Level1, BossLevel}
+export {Level1, Level2, BossLevel}

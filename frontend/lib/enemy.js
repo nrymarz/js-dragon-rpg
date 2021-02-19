@@ -1,4 +1,4 @@
-import {Attack} from "./abilites.js"
+import {Attack, Fireball} from "./abilites.js"
 
 class Enemy{
     constructor(){
@@ -38,6 +38,7 @@ class EasyEnemy extends Enemy{
         this.spritePixelHeight = 70
         this.hp = 30
         this.attack = 15
+        this.spellPower = 15
         this.xp = 20
     }
 }
@@ -52,6 +53,7 @@ class MediumEnemy extends Enemy{
         this.spritePixelHeight = 85
         this.hp = 50
         this.attack = 18
+        this.spellPower = 18
         this.xp = 40
     }
 }
@@ -66,6 +68,7 @@ class HardEnemy extends Enemy{
         this.spritePixelHeight = 80
         this.hp = 100
         this.attack = 25
+        this.spellPower = 25
         this.xp = 200
     }
 }
@@ -80,6 +83,7 @@ class VeryHardEnemy extends Enemy{
         this.spritePixelHeight = 75
         this.hp = 200
         this.attack = 45
+        this.spellPower = 45
         this.xp = 500
     }
 }
@@ -93,6 +97,7 @@ class Boss{
 
         this.hp = 500
         this.attack = 55
+        this.spellPower = 55
         this.xp = 1000
 
         const boss1Image = document.createElement('img')

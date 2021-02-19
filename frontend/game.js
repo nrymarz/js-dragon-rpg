@@ -1,5 +1,5 @@
 import Player from './lib/player.mjs'
-import {Level1, BossLevel} from './lib/level.js'
+import {Level1, Level2, BossLevel} from './lib/level.js'
 import Inventory from './lib/inventory.js'
 import {BattleUI, BossBattle} from './lib/battleUI.js'
 
@@ -97,7 +97,7 @@ function update(modifier){
         GAMESTATE = "BATTLE"
     }
     if (player.touchingEdge){
-        level = new Level1(canvas.width,canvas.height)
+        level = new Level2(canvas.width,canvas.height)
         if(player.y < -20){player.y = 600}
         else if(player.y>570){player.y = 0}
         else if(player.x<-20){player.x = 800}

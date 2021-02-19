@@ -1,4 +1,4 @@
-import { Attack } from "./abilites.js"
+import { Attack, Fireball } from "./abilites.js"
 
 class Player{
     constructor(speed,x,y){
@@ -6,7 +6,7 @@ class Player{
         this.hp = 100
         this.mana = 50
         this.attack = 10
-        this.spellPower = 5
+        this.spellPower = 15
         this.xp = 0
         this.speed = speed
         this.x = x
@@ -16,7 +16,8 @@ class Player{
         this.frameIndex = [0,0]
         this.frame = 0
         this.touchingEdge = false
-        this.abilities = [new Attack(this)]
+        this.abilities = [new Attack(this), new Fireball(this)]
+        this.items = []
     }
     
     draw(ctx){

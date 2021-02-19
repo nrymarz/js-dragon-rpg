@@ -19,4 +19,20 @@ class Attack extends Ability{
     }
 }
 
-export {Attack}
+class Fireball extends Ability{
+    constructor(user){
+        super(user)
+        this.name = "Fireball"
+    }
+
+    use(attacker,defender){
+        defender.hp -= attacker.spellPower
+        if (attacker.mana) attacker.mana -= 15
+    }
+
+    get damage(){
+        return this.user.spellPower
+    }
+}
+
+export {Attack, Fireball}
