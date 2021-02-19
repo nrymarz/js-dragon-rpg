@@ -15,13 +15,13 @@ let level = new Level1(canvas.width,canvas.height)
 let bgReady = false
 level.background.onload = function(){bgReady = true}
 
-const inventory = new Inventory()
-let battleUI = null
-let turnResult = ''
-
 const player = new Player(100,380,275)
 let playerImgReady = false
 player.img.onload = function(){playerImgReady = true}
+
+const inventory = new Inventory(player)
+let battleUI = null
+let turnResult = ''
 
 const keysDown = {}
 addEventListener('keydown',e => keysDown[e.key] = true)
@@ -92,6 +92,10 @@ function renderMap(){
 
 function update(modifier){
     player.update(modifier,keysDown)
+    if(player.isTouchingItem(level.item)){
+        inventory.items.push(level.item)
+        level.item = null
+    }
     if(player.isTouchingEnemies(level.enemies)){
         battleUI = new BattleUI(ctx,player,player.isTouchingEnemies(level.enemies))
         GAMESTATE = "BATTLE"

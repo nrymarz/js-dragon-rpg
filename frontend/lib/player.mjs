@@ -17,7 +17,6 @@ class Player{
         this.frame = 0
         this.touchingEdge = false
         this.abilities = [new Attack(this), new Fireball(this)]
-        this.items = []
     }
     
     draw(ctx){
@@ -55,6 +54,13 @@ class Player{
             return(this.x+40>enemy.x && this.x<enemy.x+enemy.width)
             &&(this.y+50>enemy.y && this.y<enemy.y+enemy.height)
         })
+    }
+
+    isTouchingItem(item){
+        if(item){
+            return((this.x+40>item.x && this.x<item.x+50)
+                &&(this.y+50>item.y && this.y<item.y+50))
+        }
     }
 
     animate(){
