@@ -1,16 +1,21 @@
 class Ability{
-    constructor(){
+    constructor(user){
+        this.user = user
     }
 }
 
 class Attack extends Ability{
-    constructor(){
-        super()
+    constructor(user){
+        super(user)
         this.name = "Attack"
     }
 
     use(attacker,defender){
         defender.hp -= attacker.attack
+    }
+
+    get damage(){
+        return this.user.attack
     }
 }
 

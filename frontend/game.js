@@ -17,6 +17,7 @@ level.background.onload = function(){bgReady = true}
 
 const inventory = new Inventory()
 let battleUI = null
+let turnResult = ''
 
 const player = new Player(100,380,275)
 let playerImgReady = false
@@ -51,10 +52,14 @@ function main(){
         renderInventory()
     }
     else if(GAMESTATE === "BATTLE"){
-        battleUI.update(keysDown,frame)
-        battleUI.draw()
+        updateBattle()
     }
     requestAnimationFrame(main)
+}
+
+function updateBattle(){
+    turnResult = battleUI.update(keysDown,frame) || turnResult
+    battleUI.draw(turnResult)
 }
 
 function renderInventory(){

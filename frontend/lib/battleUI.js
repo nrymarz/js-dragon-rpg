@@ -12,7 +12,7 @@ class BattleUI{
         this.turnLockout = false
     }
 
-    draw(){
+    draw(result){
         const player = this.player
         const enemy = this.enemy
         this.ctx.drawImage(this.image,0,0,800,600)
@@ -22,14 +22,20 @@ class BattleUI{
         this.ctx.fillStyle = "blue"
         this.ctx.fillRect(0,400+(20*this.abilityIndex),800,22)
         this.ctx.font = '20px Comic Sans MS'
+        this.ctx.fillStyle = "red"
+        this.ctx.fillText(`Enemy HP:${enemy.hp}`,330,20)
+        this.ctx.fillStyle = player.hp > 50 ? "green" : "red"
+        this.ctx.fillText(`HP:${player.hp}`,0,375)
+        this.ctx.fillStyle = "blue"
+        this.ctx.fillText(`Mana:${player.mana}`,0,395)
         this.ctx.fillStyle = "white"
         for(let i=0;i<player.abilities.length;i++){
             this.ctx.fillText(player.abilities[i].name,0,420 +(20*i))
         }
+        this.ctx.fillText(result,300,300)
     }
 
     update(keysDown,frame){
-        this.updateTurnLockout(keysDown)
         if(this.turn % 2 === 0){
             if (frame - this.frameLockout > 15){this.abilityIndexLockout = false}
             if("s" in keysDown && !this.abilityIndexLockout){
@@ -43,16 +49,19 @@ class BattleUI{
                 this.frameLockout = frame
             }
             if(keysDown["Enter"] && !this.turnLockout){
-                this.player.abilities[this.abilityIndex].use(this.player,this.enemy)
+                let ability = this.player.abilities[this.abilityIndex]
+                ability.use(this.player,this.enemy)
                 this.turnLockout = true
                 this.turn++
-                console.log("player attacked")
+                setTimeout(() => this.turnLockout = false,2000)
+                return `Player used ${ability.name} dealing ${ability.damage} damage.`
             }
         }
-        else{
+        else if(!this.turnLockout){
             let ability = this.enemy.fight(this.player)
-            console.log("enemy attacked")
             this.turn++
+            this.turnLockout = false
+            return `Enemy used ${ability.name} dealing ${ability.damage} damage.`
         }
     }
 

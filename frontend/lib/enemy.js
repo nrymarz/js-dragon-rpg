@@ -6,7 +6,7 @@ class Enemy{
         this.y
         this.image = document.createElement('img')
         this.image.src = "./lib/images/DAGRONS5.png"
-        this.abilities = [new Attack()]
+        this.abilities = [new Attack(this)]
     }
 
     draw(ctx){

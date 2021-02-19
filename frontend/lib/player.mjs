@@ -16,7 +16,7 @@ class Player{
         this.frameIndex = [0,0]
         this.frame = 0
         this.touchingEdge = false
-        this.abilities = [new Attack()]
+        this.abilities = [new Attack(this)]
     }
     
     draw(ctx){
