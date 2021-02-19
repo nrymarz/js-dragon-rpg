@@ -1,4 +1,4 @@
-import {Attack, Fireball} from "./abilites.js"
+import {BasicAttack, StrongAttack, Fireball, FireStorm, Inferno} from "./abilites.js"
 
 class Enemy{
     constructor(){
@@ -6,7 +6,7 @@ class Enemy{
         this.y
         this.image = document.createElement('img')
         this.image.src = "./lib/images/DAGRONS5.png"
-        this.abilities = [new Attack(this)]
+        this.abilities = [new BasicAttack(this)]
     }
 
     draw(ctx){

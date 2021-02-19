@@ -28,15 +28,26 @@ class Attack extends Ability{
    
 }
 
-class BasicAttack extends Ability{
+class BasicAttack extends Attack{
     constructor(user){
         super(user)
         this.name = "Basic Attack"
     }
-    
+
     get damage(){
         return this.user.attack
     }
+}
+
+class StrongAttack extends Attack{
+    constructor(user){
+        super(user)
+        this.name = "Strong Attack"
+    }
+    get damage(){
+        return this.user.attack+10
+    }
+
 }
 
 class Fireball extends Spell{
@@ -64,4 +75,16 @@ class FireStorm extends Spell{
 
 }
 
-export {Attack, Fireball}
+class Inferno extends Spell{
+    constructor(user){
+        super(user)
+        this.name = "Firestorm"
+        this.mana = 30
+    }
+
+    get damage(){
+        return this.user.spellPower*2
+    }
+}
+
+export {BasicAttack, StrongAttack, Fireball, FireStorm, Inferno}

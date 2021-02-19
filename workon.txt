@@ -1,7 +1,5 @@
 player levels
     additional abilities
-additional levels
-markers/map
 
 Game Instructions below canvas
 Backend Saving
