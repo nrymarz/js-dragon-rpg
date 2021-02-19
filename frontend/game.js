@@ -60,6 +60,17 @@ function main(){
 function updateBattle(){
     turnResult = battleUI.update(keysDown,frame) || turnResult
     battleUI.draw(turnResult)
+    if(player.hp <= 0){
+        GAMESTATE = "MAP"
+        player.hp = 1
+        player.x = 380
+        player.y = 275
+    }
+    else if(battleUI.enemy.hp <= 0){
+        level.enemies.splice(level.enemies.indexOf(battleUI.enemy),1)
+        player.xp += battleUI.enemy.xp
+        GAMESTATE = "MAP"
+    }
 }
 
 function renderInventory(){

@@ -19,6 +19,12 @@ class Enemy{
             && (this.y+this.height>enemy.y && this.y<enemy.y+enemy.height)) && enemy !== this
         })
     }
+
+    fight(player){
+        let ability = this.abilities[Math.floor(Math.random()*this.abilities.length)]
+        this.abilities[0].use(this,player)
+        return ability
+    }
 }
 
 
@@ -32,12 +38,7 @@ class EasyEnemy extends Enemy{
         this.spritePixelHeight = 70
         this.hp = 30
         this.attack = 15
-    }
-
-    fight(player){
-        let ability = this.abilities[Math.floor(Math.random()*this.abilities.length)]
-        this.abilities[0].use(this,player)
-        return ability
+        this.xp = 20
     }
 }
 
@@ -49,6 +50,9 @@ class MediumEnemy extends Enemy{
         this.spritePixelIndex=[20,45]
         this.spritePixelWidth = 70
         this.spritePixelHeight = 85
+        this.hp = 50
+        this.attack = 18
+        this.xp = 40
     }
 }
 
@@ -60,6 +64,9 @@ class HardEnemy extends Enemy{
         this.spritePixelIndex=[220,25]
         this.spritePixelWidth = 80
         this.spritePixelHeight = 80
+        this.hp = 100
+        this.attack = 25
+        this.xp = 200
     }
 }
 
@@ -71,6 +78,9 @@ class VeryHardEnemy extends Enemy{
         this.spritePixelIndex=[105,295]
         this.spritePixelWidth = 185
         this.spritePixelHeight = 75
+        this.hp = 200
+        this.attack = 45
+        this.xp = 500
     }
 }
 
@@ -80,6 +90,10 @@ class Boss{
         this.y = y
         this.width = 525
         this.height = 312
+
+        this.hp = 500
+        this.attack = 55
+        this.xp = 1000
 
         const boss1Image = document.createElement('img')
         boss1Image.src = "./lib/images/Boss1.png"

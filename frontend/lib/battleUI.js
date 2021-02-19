@@ -32,7 +32,8 @@ class BattleUI{
         for(let i=0;i<player.abilities.length;i++){
             this.ctx.fillText(player.abilities[i].name,0,420 +(20*i))
         }
-        this.ctx.fillText(result,300,300)
+        this.ctx.fillStyle = "black"
+        this.ctx.fillText(result,235,350)
     }
 
     update(keysDown,frame){
@@ -63,10 +64,6 @@ class BattleUI{
             this.turnLockout = false
             return `Enemy used ${ability.name} dealing ${ability.damage} damage.`
         }
-    }
-
-    updateTurnLockout(keysDown){
-        if(this.turnLockout === true) {this.turnLockout = ("Enter" in keysDown)}
     }
 }
 
