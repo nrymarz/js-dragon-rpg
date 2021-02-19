@@ -77,6 +77,7 @@ class BattleUI{
 class BossBattle extends BattleUI{
     constructor(ctx,player,enemy){
         super(ctx,player,enemy)
+        this.battle = "Boss Battle"
     }
     draw(result){
         const boss = this.enemy

@@ -69,6 +69,7 @@ function checkBattleOver(){
     }
     else if(level.battleUI.enemy.hp <= 0){
         GAMESTATE = "MAP"
+        if(level.battleUI.battle) GAMESTATE = "WON"
         level.enemies.splice(level.enemies.indexOf(level.battleUI.enemy),1)
         player.xp += level.battleUI.enemy.xp
         player.checkLevelUp()
