@@ -25,7 +25,7 @@ class BattleUI{
         this.ctx.font = '20px Comic Sans MS'
         this.ctx.fillStyle = "red"
         this.ctx.fillText(`Enemy HP:${enemy.hp}`,330,20)
-        this.ctx.fillStyle = player.hp > 50 ? "green" : "red"
+        this.ctx.fillStyle = player.hp > player.maxHp/3 ? "green" : "red"
         this.ctx.fillText(`HP:${player.hp}`,0,375)
         this.ctx.fillStyle = "blue"
         this.ctx.fillText(`Mana:${player.mana}`,0,395)

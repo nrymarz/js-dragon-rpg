@@ -98,9 +98,9 @@ class Boss extends Enemy{
         this.width = 525
         this.height = 312
 
-        this.hp = 500
-        this.attack = 55
-        this.spellPower = 80
+        this.hp = 800
+        this.attack = 75
+        this.spellPower = 100
         this.xp = 600
 
         const boss1Image = document.createElement('img')

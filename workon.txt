@@ -1,5 +1,5 @@
+GAME BALANCE
 
-Game Instructions below canvas
 Backend Saving
 Users who've beaten the boss
 Styling

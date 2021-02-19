@@ -87,8 +87,8 @@ class Player{
         this.level++
         this.maxHp += 10*this.level
         this.maxMana +=  10*this.level
-        this.attack += 4*this.level
-        this.spellPower += 5*this.level
+        this.attack += 2*this.level
+        this.spellPower += 2.5*this.level
         this.hp = this.maxHp
         this.mana = this.maxMana
         if (this.level === 3) this.abilities.push(new FireStorm(this))
