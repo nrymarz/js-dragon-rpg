@@ -52,15 +52,17 @@ class BattleUI{
         if(this.turn % 2 === 0){
             if(keysDown["Enter"] && !this.turnLockout){
                 let ability = this.player.abilities[this.abilityIndex]
-                ability.use(this.player,this.enemy)
-                this.turnLockout = true
-                this.selectColor = "red"
-                this.turn++
-                setTimeout(() => {
-                    this.turnLockout = false
-                    this.selectColor = "blue"
-                },1500)
-                return `Player used ${ability.name} dealing ${ability.damage} damage.`
+                if(this.player.mana >= ability.mana){
+                    ability.use(this.player,this.enemy)
+                    this.turnLockout = true
+                    this.selectColor = "red"
+                    this.turn++
+                    setTimeout(() => {
+                        this.turnLockout = false
+                        this.selectColor = "blue"
+                    },1500)
+                    return `Player used ${ability.name} dealing ${ability.damage} damage.`
+                }
             }
         }
         else if(!this.turnLockout){
