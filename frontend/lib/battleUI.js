@@ -75,19 +75,22 @@ class BattleUI{
 }
 
 class BossBattle extends BattleUI{
-    constructor(){
-        super()
+    constructor(ctx,player,enemy){
+        super(ctx,player,enemy)
     }
-    draw(ctx,boss){
-        ctx.drawImage(this.image,0,0,800,600)
-        ctx.fillStyle = 'black'
-        ctx.fillRect(0,400,800,200)
-        ctx.drawImage(boss.images[boss.imageIndex],0,0,175,104,400-boss.width/2,200-boss.height/2,boss.width,boss.height)
+    draw(result){
+        const boss = this.enemy
+        const player = this.player
+
+        this.ctx.drawImage(this.image,0,0,800,600)
+        this.ctx.fillStyle = 'black'
+        this.ctx.fillRect(0,400,800,200)
+        this.ctx.drawImage(boss.images[boss.imageIndex],0,0,175,104,400-boss.width/2,200-boss.height/2,boss.width,boss.height)
         this.ctx.fillStyle = this.selectColor
         this.ctx.fillRect(0,400+(20*this.abilityIndex),800,22)
         this.ctx.font = '20px Comic Sans MS'
         this.ctx.fillStyle = "red"
-        this.ctx.fillText(`Enemy HP:${enemy.hp}`,330,20)
+        this.ctx.fillText(`Enemy HP:${boss.hp}`,330,20)
         this.ctx.fillStyle = player.hp > 50 ? "green" : "red"
         this.ctx.fillText(`HP:${player.hp}`,0,375)
         this.ctx.fillStyle = "blue"
@@ -97,7 +100,7 @@ class BossBattle extends BattleUI{
             this.ctx.fillText(player.abilities[i].name,0,420 +(20*i))
         }
         this.ctx.fillStyle = "black"
-        this.ctx.fillText(result,235,350)
+        this.ctx.fillText(result,235,380)
     }
 }
 export {BattleUI, BossBattle}

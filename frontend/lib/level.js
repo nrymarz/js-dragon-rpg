@@ -1,4 +1,4 @@
-import { BattleUI } from './battleUI.js'
+import { BattleUI, BossBattle } from './battleUI.js'
 import {EasyEnemy,MediumEnemy,HardEnemy,VeryHardEnemy,Boss} from './enemy.js'
 import {HealthPotion, ManaPotion} from './items.js'
 
@@ -75,6 +75,7 @@ class BossLevel extends Level{
         this.background.src = './lib/images/Overworld.png'
         this.enemies = [new Boss(100,100)]
         this.enemies[0].animate()
+        this.battleUI = new BossBattle()
     }
 
     draw(ctx){

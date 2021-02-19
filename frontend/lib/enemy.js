@@ -90,8 +90,9 @@ class VeryHardEnemy extends Enemy{
     }
 }
 
-class Boss{
+class Boss extends Enemy{
     constructor(x,y){
+        super()
         this.x = x
         this.y = y
         this.width = 525
@@ -113,6 +114,7 @@ class Boss{
         this.imageIndex = 0
         this.frame = 0 
 
+        this.abilites = [new Attack(this), new Fireball(this)]
     }
 
     draw(ctx){
