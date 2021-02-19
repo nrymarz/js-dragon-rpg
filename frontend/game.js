@@ -1,7 +1,6 @@
 import Player from './lib/player.mjs'
-import {Level1, Level2, BossLevel} from './lib/level.js'
+import {Level1, Level2, Level3, BossLevel} from './lib/level.js'
 import Inventory from './lib/inventory.js'
-import {BattleUI, BossBattle} from './lib/battleUI.js'
 
 
 const canvas = document.querySelector("#game")
@@ -15,7 +14,6 @@ let level = new Level1(canvas.width,canvas.height)
 const player = new Player(100,380,275)
 
 const inventory = new Inventory(player)
-let battleUI = null
 let turnResult = ''
 
 const keysDown = {}
@@ -47,8 +45,8 @@ function main(){
         inventory.draw(ctx)
     }
     else if(GAMESTATE === "BATTLE"){
-        turnResult = battleUI.update(keysDown,frame) || turnResult
-        battleUI.draw(turnResult)
+        turnResult = level.battleUI.update(keysDown,frame) || turnResult
+        level.battleUI.draw(turnResult)
         checkBattleOver()
     }
     requestAnimationFrame(main)
@@ -62,10 +60,10 @@ function checkBattleOver(){
         player.y = 275
         level = new Level1(canvas.width,canvas.height)
     }
-    else if(battleUI.enemy.hp <= 0){
+    else if(level.battleUI.enemy.hp <= 0){
         GAMESTATE = "MAP"
-        level.enemies.splice(level.enemies.indexOf(battleUI.enemy),1)
-        player.xp += battleUI.enemy.xp
+        level.enemies.splice(level.enemies.indexOf(level.battleUI.enemy),1)
+        player.xp += level.battleUI.enemy.xp
         player.checkLevelUp()
     }
 }
@@ -84,17 +82,28 @@ function update(modifier){
         level.item = null
     }
     if(player.isTouchingEnemies(level.enemies)){
-        battleUI = new BattleUI(ctx,player,player.isTouchingEnemies(level.enemies))
+        level.battleUI.enemy = player.isTouchingEnemies(level.enemies)
+        level.battleUI.player = player
+        level.battleUI.ctx = ctx
         GAMESTATE = "BATTLE"
     }
     if (player.touchingEdge){
-        level = new Level2(canvas.width,canvas.height)
+        level = getRandomLevel()
+
         if(player.y < -20){player.y = 600}
         else if(player.y>570){player.y = 0}
         else if(player.x<-20){player.x = 800}
         else if(player.x>780){player.x = 0}
         player.touchingEdge = false
     }
+}
+
+function getRandomLevel(){
+    let num = Math.random()
+    if(num<.33)return new Level1(canvas.width,canvas.height)
+    else if(num<.66)return new Level2(canvas.width,canvas.height)
+    else if(num<.9)return new Level3(canvas.width,canvas.height)
+    else return new BossLevel(canvas.width,canvas.height)
 }
 
 

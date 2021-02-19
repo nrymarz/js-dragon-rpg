@@ -1,3 +1,4 @@
+import { BattleUI } from './battleUI.js'
 import {EasyEnemy,MediumEnemy,HardEnemy,VeryHardEnemy,Boss} from './enemy.js'
 import {HealthPotion, ManaPotion} from './items.js'
 
@@ -6,6 +7,7 @@ class Level{
         this.width = width
         this.height = height
         this.item = null
+        this.battleUI = new BattleUI()
     }
 
     draw(ctx){
@@ -55,6 +57,17 @@ class Level2 extends Level{
     }
 }
 
+class Level3 extends Level{
+    constructor(width,height){
+        super(width,height)
+        this.background = document.createElement('img')
+        this.background.src = './lib/images/Overworld.png'
+        this.enemies = [new VeryHardEnemy()]
+        this.enemies.forEach(enemy => this.spawnEnemy(enemy))
+        this.item = (Math.random() > .5) ? new HealthPotion(width/2,height/2) : new ManaPotion(width/2,height/2)
+    }
+}
+
 class BossLevel extends Level{
     constructor(width,height){
         super(width,height)
@@ -81,4 +94,4 @@ class BossLevel extends Level{
 }
 
 
-export {Level1, Level2, BossLevel}
+export {Level1, Level2, Level3, BossLevel}

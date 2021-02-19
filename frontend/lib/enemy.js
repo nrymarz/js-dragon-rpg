@@ -68,8 +68,9 @@ class HardEnemy extends Enemy{
         this.spritePixelHeight = 80
         this.hp = 100
         this.attack = 25
-        this.spellPower = 25
+        this.spellPower = 30
         this.xp = 80
+        this.abilities = [new Attack(this), new Fireball(this)]
     }
 }
 
@@ -83,8 +84,9 @@ class VeryHardEnemy extends Enemy{
         this.spritePixelHeight = 75
         this.hp = 200
         this.attack = 45
-        this.spellPower = 45
-        this.xp = 500
+        this.spellPower = 55
+        this.xp = 250
+        this.abilities = [new Attack(this), new Fireball(this)]
     }
 }
 
@@ -97,8 +99,8 @@ class Boss{
 
         this.hp = 500
         this.attack = 55
-        this.spellPower = 55
-        this.xp = 1000
+        this.spellPower = 80
+        this.xp = 600
 
         const boss1Image = document.createElement('img')
         boss1Image.src = "./lib/images/Boss1.png"

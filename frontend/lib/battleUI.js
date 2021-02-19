@@ -34,7 +34,7 @@ class BattleUI{
             this.ctx.fillText(player.abilities[i].name,0,420 +(20*i))
         }
         this.ctx.fillStyle = "black"
-        this.ctx.fillText(result,235,350)
+        this.ctx.fillText(result,235,380)
     }
 
     update(keysDown,frame){
@@ -83,6 +83,21 @@ class BossBattle extends BattleUI{
         ctx.fillStyle = 'black'
         ctx.fillRect(0,400,800,200)
         ctx.drawImage(boss.images[boss.imageIndex],0,0,175,104,400-boss.width/2,200-boss.height/2,boss.width,boss.height)
+        this.ctx.fillStyle = this.selectColor
+        this.ctx.fillRect(0,400+(20*this.abilityIndex),800,22)
+        this.ctx.font = '20px Comic Sans MS'
+        this.ctx.fillStyle = "red"
+        this.ctx.fillText(`Enemy HP:${enemy.hp}`,330,20)
+        this.ctx.fillStyle = player.hp > 50 ? "green" : "red"
+        this.ctx.fillText(`HP:${player.hp}`,0,375)
+        this.ctx.fillStyle = "blue"
+        this.ctx.fillText(`Mana:${player.mana}`,0,395)
+        this.ctx.fillStyle = "white"
+        for(let i=0;i<player.abilities.length;i++){
+            this.ctx.fillText(player.abilities[i].name,0,420 +(20*i))
+        }
+        this.ctx.fillStyle = "black"
+        this.ctx.fillText(result,235,350)
     }
 }
 export {BattleUI, BossBattle}
