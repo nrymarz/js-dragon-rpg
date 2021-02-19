@@ -12,32 +12,34 @@ class Item {
 class HealthPotion extends Item {
     constructor(x,y){
         super(x,y)
+        this.name = "Health Potion"
         this.image = document.createElement('img')
         this.image.src = './lib/images/healthPotion.png'
     }
 
-    description(){
-        return "Restores 50 Health Points."
+    get description(){
+        return "Restores 100 Health Points."
     }
 
-    use(){
-        this.player.hp += 50
+    use(player){
+        player.hp += 100
     }
 }
 
 class ManaPotion extends Item {
     constructor(x,y){
         super(x,y)
+        this.name = "Mana Potion"
         this.image = document.createElement('img')
         this.image.src = './lib/images/manaPotion.png'
     }
 
-    description(){
-        return "Restores 25 Mana."
+    get description(){
+        return "Restores 50 Mana."
     }
 
-    use(){
-        this.player.mana += 25
+    use(player){
+        player.mana += 50
     }
 }
 

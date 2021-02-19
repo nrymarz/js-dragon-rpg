@@ -54,7 +54,7 @@ class BattleUI{
                 ability.use(this.player,this.enemy)
                 this.turnLockout = true
                 this.turn++
-                setTimeout(() => this.turnLockout = false,2000)
+                setTimeout(() => this.turnLockout = false,1500)
                 return `Player used ${ability.name} dealing ${ability.damage} damage.`
             }
         }

@@ -7,17 +7,12 @@ import {BattleUI, BossBattle} from './lib/battleUI.js'
 const canvas = document.querySelector("#game")
 const ctx = canvas.getContext("2d")
 
-const GAMESTATES = ["MAP","BATTLE","INVENTORY"]
-let GAMESTATE = GAMESTATES[0]
+let GAMESTATE = "MAP"
 
 //let level = new BossLevel(canvas.width,canvas.height)
 let level = new Level1(canvas.width,canvas.height)
-let bgReady = false
-level.background.onload = function(){bgReady = true}
 
 const player = new Player(100,380,275)
-let playerImgReady = false
-player.img.onload = function(){playerImgReady = true}
 
 const inventory = new Inventory(player)
 let battleUI = null
@@ -48,8 +43,8 @@ function main(){
         then = now
     }
     else if(GAMESTATE === "INVENTORY"){
-        updateInventory()
-        renderInventory()
+        inventory.update(keysDown)
+        inventory.draw(ctx)
     }
     else if(GAMESTATE === "BATTLE"){
         updateBattle()
@@ -73,27 +68,17 @@ function updateBattle(){
     }
 }
 
-function renderInventory(){
-    inventory.draw(ctx,player)
-}
-
-function updateInventory(){
-}
 
 function renderMap(){
     ctx.clearRect(0,0,canvas.width,canvas.height)
-    if(bgReady){
-        level.draw(ctx)
-    }
-    if(playerImgReady){
-        player.draw(ctx)
-    }
+    level.draw(ctx)
+    player.draw(ctx)
 }
 
 function update(modifier){
     player.update(modifier,keysDown)
     if(player.isTouchingItem(level.item)){
-        inventory.items.push(level.item)
+        inventory.addItem(level.item)
         level.item = null
     }
     if(player.isTouchingEnemies(level.enemies)){
