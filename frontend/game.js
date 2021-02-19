@@ -49,6 +49,13 @@ function main(){
         level.battleUI.draw(turnResult)
         checkBattleOver()
     }
+    else if(GAMESTATE === "WON"){
+        ctx.fillStyle = "red"
+        ctx.fillRect(0,0,800,600)
+        ctx.font = "40px Arial"
+        ctx.fillStyle = "black"
+        ctx.fillText("YOU WON!",300,260)
+    }
     requestAnimationFrame(main)
 }
 
