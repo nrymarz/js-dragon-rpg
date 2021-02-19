@@ -69,11 +69,28 @@ class Player{
         this.frame++
         if(this.frame % 5 === 0){
             this.frameIndex[0] +=1
-            if(this.frameIndex[0] === 4){
-                this.frameIndex[0] = 0
-            }
+            if(this.frameIndex[0] === 4)this.frameIndex[0] = 0
         }
         requestAnimationFrame(this.animate.bind(this))
+    }
+
+    get xpRequired(){
+        return this.level*50
+    }
+
+    checkLevelUp(){
+        if(this.xp >= this.level*50) this.levelUp()
+    }
+
+    levelUp(){
+        this.xp = this.xp - this.level*50
+        this.level ++
+        this.maxHp += 10*this.level
+        this.maxMana +=  10*this.level
+        this.attack += 4*this.level
+        this.spellPower += 5*this.level
+        this.hp = this.maxHp
+        this.mana = this.maxMana
     }
    
 

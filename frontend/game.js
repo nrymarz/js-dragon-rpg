@@ -47,24 +47,26 @@ function main(){
         inventory.draw(ctx)
     }
     else if(GAMESTATE === "BATTLE"){
-        updateBattle()
+        turnResult = battleUI.update(keysDown,frame) || turnResult
+        battleUI.draw(turnResult)
+        checkBattleOver()
     }
     requestAnimationFrame(main)
 }
 
-function updateBattle(){
-    turnResult = battleUI.update(keysDown,frame) || turnResult
-    battleUI.draw(turnResult)
+function checkBattleOver(){
     if(player.hp <= 0){
         GAMESTATE = "MAP"
         player.hp = 1
         player.x = 380
         player.y = 275
+        level = new Level1(canvas.width,canvas.height)
     }
     else if(battleUI.enemy.hp <= 0){
+        GAMESTATE = "MAP"
         level.enemies.splice(level.enemies.indexOf(battleUI.enemy),1)
         player.xp += battleUI.enemy.xp
-        GAMESTATE = "MAP"
+        player.checkLevelUp()
     }
 }
 

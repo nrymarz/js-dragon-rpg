@@ -69,7 +69,7 @@ class HardEnemy extends Enemy{
         this.hp = 100
         this.attack = 25
         this.spellPower = 25
-        this.xp = 200
+        this.xp = 80
     }
 }
 
@@ -121,9 +121,7 @@ class Boss{
         this.frame++
         if(this.frame % 15 === 0){
             this.imageIndex +=1
-            if(this.imageIndex === 3){
-                this.imageIndex = 0
-            }
+            if(this.imageIndex === 3)this.imageIndex = 0
         }
         requestAnimationFrame(this.animate.bind(this))
     }

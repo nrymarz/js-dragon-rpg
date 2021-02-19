@@ -28,7 +28,7 @@ class Inventory {
         ctx.fillText("Level:" + this.player.level,515,300)
         ctx.fillText("HP:" + this.player.hp,515,320)
         ctx.fillText("Mana:" + this.player.mana,515,340)
-        ctx.fillText("XP:" + this.player.xp,515,360)
+        ctx.fillText("XP:" + this.player.xp + '/' + this.player.xpRequired,515,360 )
         ctx.fillText("Attack:" + this.player.attack,515,380)
         ctx.fillText("Spell Power:" + this.player.spellPower,515,400)
         ctx.fillText(new HealthPotion().description,140,275)
