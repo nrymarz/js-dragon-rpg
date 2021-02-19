@@ -22,7 +22,7 @@ class Enemy{
 
     fight(player){
         let ability = this.abilities[Math.floor(Math.random()*this.abilities.length)]
-        this.abilities[0].use(this,player)
+        ability.use(this,player)
         return ability
     }
 }
@@ -70,7 +70,7 @@ class HardEnemy extends Enemy{
         this.attack = 25
         this.spellPower = 30
         this.xp = 80
-        this.abilities = [new Attack(this), new Fireball(this)]
+        this.abilities = [new StrongAttack(this), new Fireball(this)]
     }
 }
 
@@ -86,7 +86,7 @@ class VeryHardEnemy extends Enemy{
         this.attack = 45
         this.spellPower = 55
         this.xp = 250
-        this.abilities = [new Attack(this), new Fireball(this)]
+        this.abilities = [new StrongAttack(this), new Fireball(this), new FireStorm(this)]
     }
 }
 
@@ -114,7 +114,7 @@ class Boss extends Enemy{
         this.imageIndex = 0
         this.frame = 0 
 
-        this.abilites = [new Attack(this), new Fireball(this)]
+        this.abilities = [new StrongAttack(this), new FireStorm(this),new Inferno(this)]
     }
 
     draw(ctx){

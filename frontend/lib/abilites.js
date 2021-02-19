@@ -8,7 +8,6 @@ class Ability{
 class Spell extends Ability{
     constructor(user){
         super(user)
-        this.mana = 0
     }
     use(attacker,defender){
         defender.hp -= this.damage
@@ -78,8 +77,8 @@ class FireStorm extends Spell{
 class Inferno extends Spell{
     constructor(user){
         super(user)
-        this.name = "Firestorm"
-        this.mana = 30
+        this.name = "Inferno"
+        this.mana = 50
     }
 
     get damage(){

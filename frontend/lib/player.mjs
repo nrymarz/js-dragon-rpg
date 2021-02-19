@@ -79,12 +79,12 @@ class Player{
     }
 
     checkLevelUp(){
-        if(this.xp >= this.level*50) this.levelUp()
+        if(this.xp >= this.xpRequired) this.levelUp()
     }
 
     levelUp(){
-        this.xp = this.xp - this.level*50
-        this.level ++
+        this.xp = this.xp - this.xpRequired
+        this.level++
         this.maxHp += 10*this.level
         this.maxMana +=  10*this.level
         this.attack += 4*this.level
