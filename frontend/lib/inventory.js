@@ -41,14 +41,14 @@ class Inventory {
     update(keysDown){
         if("s" in keysDown){this.selectedPotionIndex = 1}
         if("w" in keysDown){this.selectedPotionIndex = 0}
-        if("Enter" in keysDown && !this.timeOut){
+        if("Enter" in keysDown && !this.lockOut){
             if(this.selectedPotionIndex === 0 && this.healthPotions.length>0){
                 this.healthPotions.pop().use(this.player)
             }
             if(this.selectedPotionIndex === 1 && this.manaPotions.length>0){
                 this.manaPotions.pop().use(this.player)
             }
-            this.lockout = true
+            this.lockOut = true
             setTimeout(() => this.lockOut = false,1000)
         }
     }
