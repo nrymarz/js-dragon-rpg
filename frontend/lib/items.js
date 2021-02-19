@@ -23,6 +23,7 @@ class HealthPotion extends Item {
 
     use(player){
         player.hp += 100
+        if(player.hp > player.maxHp){player.hp = player.maxHp}
     }
 }
 
@@ -40,6 +41,7 @@ class ManaPotion extends Item {
 
     use(player){
         player.mana += 50
+        if(player.mana > player.maxMana){player.mana = player.maxMana}
     }
 }
 
