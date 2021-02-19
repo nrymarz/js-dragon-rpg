@@ -10,6 +10,7 @@ class BattleUI{
         this.abilityIndexLockout = false
         this.frameLockout = 0
         this.turnLockout = false
+        this.selectColor = "blue"
     }
 
     draw(result){
@@ -19,7 +20,7 @@ class BattleUI{
         this.ctx.fillStyle = 'black'
         this.ctx.fillRect(0,400,800,200)
         this.ctx.drawImage(enemy.image,enemy.spritePixelIndex[0],enemy.spritePixelIndex[1],enemy.spritePixelWidth,enemy.spritePixelHeight,400-enemy.width*.75,200-enemy.height*.75,enemy.width*1.5,enemy.height*1.5)
-        this.ctx.fillStyle = "blue"
+        this.ctx.fillStyle = this.selectColor
         this.ctx.fillRect(0,400+(20*this.abilityIndex),800,22)
         this.ctx.font = '20px Comic Sans MS'
         this.ctx.fillStyle = "red"
@@ -37,24 +38,28 @@ class BattleUI{
     }
 
     update(keysDown,frame){
+        if (frame - this.frameLockout > 15){this.abilityIndexLockout = false}
+        if("s" in keysDown && !this.abilityIndexLockout){
+            if(this.abilityIndex>=0 && this.abilityIndex<this.player.abilities.length-1){this.abilityIndex++}
+            this.abilityIndexLockout = true
+            this.frameLockout = frame
+        }
+        if("w" in keysDown && !this.abilityIndexLockout){
+            if(this.abilityIndex>0 && this.abilityIndex<=this.player.abilities.length){this.abilityIndex--}
+            this.abilityIndexLockout = true
+            this.frameLockout = frame
+        }
         if(this.turn % 2 === 0){
-            if (frame - this.frameLockout > 15){this.abilityIndexLockout = false}
-            if("s" in keysDown && !this.abilityIndexLockout){
-                if(this.abilityIndex>=0 && this.abilityIndex<this.player.abilities.length-1){this.abilityIndex++}
-                this.abilityIndexLockout = true
-                this.frameLockout = frame
-            }
-            if("w" in keysDown && !this.abilityIndexLockout){
-                if(this.abilityIndex>0 && this.abilityIndex<=this.player.abilities.length){this.abilityIndex--}
-                this.abilityIndexLockout = true
-                this.frameLockout = frame
-            }
             if(keysDown["Enter"] && !this.turnLockout){
                 let ability = this.player.abilities[this.abilityIndex]
                 ability.use(this.player,this.enemy)
                 this.turnLockout = true
+                this.selectColor = "red"
                 this.turn++
-                setTimeout(() => this.turnLockout = false,1500)
+                setTimeout(() => {
+                    this.turnLockout = false
+                    this.selectColor = "blue"
+                },1500)
                 return `Player used ${ability.name} dealing ${ability.damage} damage.`
             }
         }
