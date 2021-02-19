@@ -91,6 +91,9 @@ class Player{
         this.spellPower += 5*this.level
         this.hp = this.maxHp
         this.mana = this.maxMana
+        if (this.level === 3) this.abilities.push(new FireStorm(this))
+        else if(this.level === 5) this.abilities.push(new StrongAttack(this))
+        else if(this.level === 7) this.abilities.push(new Inferno(this))
     }
    
 

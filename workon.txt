@@ -1,5 +1,3 @@
-player levels
-    additional abilities
 
 Game Instructions below canvas
 Backend Saving
