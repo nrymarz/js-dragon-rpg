@@ -1,0 +1,2 @@
+USAGE: To play this game, start the rails app in dragon-rpg-api. Then run dragon-rpg.html with a server. I used vscode liveserver for testing. 
+Then you can login with any name you want and start playing.
