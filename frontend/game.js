@@ -26,7 +26,6 @@ gameOverMusic.src = "./lib/audio/01 Dragon Quest 3 - Intro _ Overture.mp3"
 let currMusic = mapMusic
 
 const player = new Player(100,380,275)
-player.attack = 1000
 
 const inventory = new Inventory(player)
 let turnResult = ''
@@ -85,6 +84,7 @@ function checkBattleOver(){
         player.x = 380
         player.y = 275
         level = new Level1(canvas.width,canvas.height)
+        updateMusic()
     }
     else if(level.battleUI.enemy.hp <= 0){
         GAMESTATE = "MAP"
@@ -116,14 +116,7 @@ function update(modifier){
     }
     if (player.touchingEdge){
         level = getRandomLevel()
-        if(level.isBossLevel){
-            currMusic.pause()
-            currMusic = bossMusic
-        }
-        else if(currMusic !== mapMusic){
-            currMusic.pause()
-            currMusic = mapMusic
-        }
+        updateMusic()
         if(player.y < -20){player.y = 600}
         else if(player.y>570){player.y = 0}
         else if(player.x<-20){player.x = 800}
@@ -140,6 +133,17 @@ function getRandomLevel(){
     else return new BossLevel(canvas.width,canvas.height)
 }
 
+function updateMusic(){
+    if(level.isBossLevel){
+        currMusic.pause()
+        currMusic = bossMusic
+        bossMusic.play()
+    }
+    else if(currMusic !== mapMusic){
+        currMusic.pause()
+        currMusic = mapMusic
+    }
+}
 
 
 
