@@ -76,6 +76,7 @@ class BossLevel extends Level{
         this.enemies = [new Boss(100,100)]
         this.enemies[0].animate()
         this.battleUI = new BossBattle()
+        this.isBossLevel = true
     }
 }
 

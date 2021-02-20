@@ -8,10 +8,25 @@ const ctx = canvas.getContext("2d")
 
 let GAMESTATE = "MAP"
 
-//let level = new BossLevel(canvas.width,canvas.height)
 let level = new Level1(canvas.width,canvas.height)
 
+
+const mapMusic = document.createElement("audio")
+mapMusic.loop = true
+mapMusic.type = "audio/mpeg"
+mapMusic.src = "./lib/audio/09 Dragon Quest 3 - Adventure.mp3"
+const bossMusic = document.createElement("audio")
+bossMusic.loop = true
+bossMusic.type = "audio/mpeg"
+bossMusic.src = "./lib/audio/40 Dragon Quest 3 - Hero's Challenge.mp3"
+const gameOverMusic = document.createElement("audio")
+gameOverMusic.type = 'audio/mpeg'
+gameOverMusic.src = "./lib/audio/01 Dragon Quest 3 - Intro _ Overture.mp3"
+
+let currMusic = mapMusic
+
 const player = new Player(100,380,275)
+player.attack = 1000
 
 const inventory = new Inventory(player)
 let turnResult = ''
@@ -24,6 +39,7 @@ addEventListener("keydown",e =>{
         if(GAMESTATE === "INVENTORY"){GAMESTATE = "MAP"}
         else if(GAMESTATE === "MAP"){GAMESTATE = "INVENTORY"}
     }
+    currMusic.play()
 })
 
 let then = Date.now()
@@ -50,6 +66,9 @@ function main(){
         checkBattleOver()
     }
     else if(GAMESTATE === "WON"){
+        currMusic.pause()
+        currMusic = ''
+        gameOverMusic.play()
         ctx.fillStyle = "red"
         ctx.fillRect(0,0,800,600)
         ctx.font = "40px Arial"
@@ -97,7 +116,14 @@ function update(modifier){
     }
     if (player.touchingEdge){
         level = getRandomLevel()
-
+        if(level.isBossLevel){
+            currMusic.pause()
+            currMusic = bossMusic
+        }
+        else if(currMusic !== mapMusic){
+            currMusic.pause()
+            currMusic = mapMusic
+        }
         if(player.y < -20){player.y = 600}
         else if(player.y>570){player.y = 0}
         else if(player.x<-20){player.x = 800}
