@@ -148,6 +148,13 @@ function updateMusic(){
     }
 }
 
+function save(){
+    const save = {
+        player: player,
+        inventory: inventory
+    }
+}
+
 
 
 

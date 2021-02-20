@@ -1,6 +1,9 @@
-GAME BALANCE
-
 Backend Saving
 Users who've beaten the boss
 Styling
+
+
+create Form must be filled before canvas loaded
+If name match a prior user, load that users save object
+if save object not null, load; else start new game
 
