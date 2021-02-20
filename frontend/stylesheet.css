@@ -11,7 +11,7 @@ h2{
 canvas {
     padding: 0;
     margin: auto;
-    display: block;
+    display: none;
     border-style: solid;
     border-color:darkgrey;
     border-width: thick;

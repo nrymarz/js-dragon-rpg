@@ -5,6 +5,12 @@
     <body>
         <h1>Welcome to Dragon-RPG</h1>
 
+        <form id="user-form">
+            <label for ="name">Name:</label><br>
+            <input type = "text" id="name" name="name" placeholder="Your Username"><br>
+            <input type = "submit" value = "Start Playing">
+        </form>
+
         <canvas id='game' width='800' height='600'></canvas>
         <script type = "module" src = '/frontend/game.js'></script>
 

@@ -6,6 +6,15 @@ import Inventory from './lib/inventory.js'
 const canvas = document.querySelector("#game")
 const ctx = canvas.getContext("2d")
 
+const form = document.querySelector("#user-form")
+form.addEventListener('click',e =>{
+    e.preventDefault()
+    const name = document.querySelector("#name").value
+    if(e.target.type === "submit"){
+        fetch(`http://localhost:3000/users/${name}`).then(res => res.json()).then(json => loadGame(json))
+    }
+})
+
 let GAMESTATE = "MAP"
 
 let level = new Level1(canvas.width,canvas.height)
@@ -152,6 +161,15 @@ function save(){
     const save = {
         player: player,
         inventory: inventory
+    }
+}
+
+function loadGame(json){
+    if(json.name){
+        //player = json.player
+    }
+    else{
+        //player = new player
     }
 }
 
