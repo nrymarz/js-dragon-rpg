@@ -162,6 +162,15 @@ function save(){
         player: player,
         inventory: inventory
     }
+    const configObject = {
+        method: "POST",
+        headers: {
+            "Content-Type":"application/json",
+            "Accept":"application/json"
+        },
+        body: JSON.stringify(save)
+    }
+    fetch('http://localhost:3000/users',configObject).then(res => res.json()).then(json => console.log(json))
 }
 
 function loadGame(json){
@@ -170,6 +179,7 @@ function loadGame(json){
     }
     else{
         //player = new player
+        //save
     }
 }
 
