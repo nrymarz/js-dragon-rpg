@@ -54,6 +54,7 @@ function loadGame(json){
         const playerData = JSON.parse(json.player)
         player = new Player(100,380,275)
         player.level = playerData.level
+        player.xp = playerData.xp
         player.mana = playerData.mana
         player.hp = playerData.hp
 
@@ -98,6 +99,7 @@ let currMusic = mapMusic
 
 const keysDown = {}
 let turnResult = ''
+
 function startGame(){
     form.style.display = "none"
 
@@ -111,6 +113,8 @@ function startGame(){
         if(e.key === 'y'){updateSave()}
     })
     canvas.style.display = "block"
+    player.level = 30
+    player.levelUp()
     main()
     player.animate()
     currMusic.play()
@@ -129,7 +133,7 @@ function main(){
         then = now
     }
     else if(GAMESTATE === "INVENTORY"){
-        inventory.update(keysDown)
+        inventory.update(keysDown,player)
         inventory.draw(ctx,player)
     }
     else if(GAMESTATE === "BATTLE"){
@@ -219,6 +223,7 @@ function updateMusic(){
     else if(currMusic !== mapMusic){
         currMusic.pause()
         currMusic = mapMusic
+        currMusic.play()
     }
 }
 

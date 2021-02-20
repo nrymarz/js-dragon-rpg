@@ -38,7 +38,7 @@ class Inventory {
         ctx.fillText(`X ${this.manaPotions}`,240,375)
     }
 
-    update(keysDown){
+    update(keysDown,player){
         if("s" in keysDown){this.selectedPotionIndex = 1}
         if("w" in keysDown){this.selectedPotionIndex = 0}
         if("Enter" in keysDown && !this.lockOut){
@@ -46,7 +46,7 @@ class Inventory {
                 new HealthPotion().use(player)
                 this.healthPotions--
             }
-            if(this.selectedPotionIndex === 1 && this.manaPotions.length>0){
+            if(this.selectedPotionIndex === 1 && this.manaPotions>0){
                 new ManaPotion().use(player)
                 this.manaPotions--
             }

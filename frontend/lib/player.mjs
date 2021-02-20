@@ -85,26 +85,26 @@ class Player{
     }
 
     get attack(){
-        return (this.level-1)*2 + 10
+        return (this.level + (this.level-1))*2 + 8 
     }
 
     get maxHp(){
-        return 10*(this.level-1) + 100
+        return 20*(this.level + (this.level-1)) + 90
     }
 
     get maxMana(){
-        return (this.level-1)*10 + 50
+        return (this.level + (this.level-1))*10 + 40
     }
 
     get spellPower(){
-        return (this.level-1)*2.5 + 15
+        return (this.level + (this.level-1))*2.5 + 12.5
     }
 
     get abilities(){
         if(this.level<3) return [new BasicAttack(this),new Fireball(this)]
         if(this.level<5) return [new BasicAttack(this),new Fireball(this),new FireStorm(this)]
         if(this.level<7) return [new BasicAttack(this),new Fireball(this),new FireStorm(this), new StrongAttack(this)]
-        else [new BasicAttack(this),new Fireball(this),new FireStorm(this), new StrongAttack(this), new Inferno(this)]
+        else return [new BasicAttack(this),new Fireball(this),new FireStorm(this), new StrongAttack(this), new Inferno(this)]
     }
    
 
