@@ -2,18 +2,80 @@ import Player from './lib/player.mjs'
 import {Level1, Level2, Level3, BossLevel} from './lib/level.js'
 import Inventory from './lib/inventory.js'
 
-
 const canvas = document.querySelector("#game")
 const ctx = canvas.getContext("2d")
+let user
+let player 
+let inventory 
 
 const form = document.querySelector("#user-form")
-form.addEventListener('click',e =>{
+form.addEventListener('submit',function(e){
     e.preventDefault()
-    const name = document.querySelector("#name").value
-    if(e.target.type === "submit"){
-        fetch(`http://localhost:3000/users/${name}`).then(res => res.json()).then(json => loadGame(json))
-    }
+    user = document.querySelector("#name").value
+    fetch(`http://localhost:3000/users/${user}`).then(res => res.json()).then(json => loadGame(json))
 })
+
+function updateSave(){
+    const save = {
+        name: user,
+        player: JSON.stringify(player),
+        inventory: JSON.stringify(inventory)
+    }
+    const configObject = {
+        method: "PATCH",
+        headers: {
+            "Content-Type":"application/json",
+            "Accept":"application/json"
+        },
+        body: JSON.stringify(save)
+    }
+    fetch(`http://localhost:3000/users/${user}`,configObject)
+}
+
+function save(){
+    const save = {
+        name: user,
+        player: JSON.stringify(player),
+        inventory: JSON.stringify(inventory)
+    }
+    const configObject = {
+        method: "POST",
+        headers: {
+            "Content-Type":"application/json",
+            "Accept":"application/json"
+        },
+        body: JSON.stringify(save)
+    }
+    fetch('http://localhost:3000/users',configObject)
+}
+
+function loadGame(json){
+    if(json && json.name){
+        const playerData = JSON.parse(json.player)
+        player = new Player(100,380,275)
+        player.level = playerData.level
+        player.mana = playerData.mana
+        player.hp = playerData.hp
+
+        const inventoryData = JSON.parse(json.inventory)
+        inventory = new Inventory()
+        inventory.healthPotions = inventoryData.healthPotions
+        inventory.manaPotions = inventoryData.manaPotions
+        startGame()
+    }
+    else{
+        player = new Player(100,380,275)
+        inventory = new Inventory()
+        save()
+        startGame()
+    }
+}
+
+
+
+
+
+
 
 let GAMESTATE = "MAP"
 
@@ -33,26 +95,29 @@ gameOverMusic.src = "./lib/audio/01 Dragon Quest 3 - Intro _ Overture.mp3"
 
 let currMusic = mapMusic
 
-const player = new Player(100,380,275)
-
-const inventory = new Inventory(player)
-let turnResult = ''
 
 const keysDown = {}
-addEventListener('keydown',e => keysDown[e.key] = true)
-addEventListener('keyup',e => delete keysDown[e.key])
-addEventListener("keydown",e =>{
-    if(e.key === "Escape" || e.key === "i"){
-        if(GAMESTATE === "INVENTORY"){GAMESTATE = "MAP"}
-        else if(GAMESTATE === "MAP"){GAMESTATE = "INVENTORY"}
-    }
+let turnResult = ''
+function startGame(){
+    form.style.display = "none"
+
+    addEventListener('keydown',e => keysDown[e.key] = true)
+    addEventListener('keyup',e => delete keysDown[e.key])
+    addEventListener("keydown",e =>{
+        if(e.key === "Escape" || e.key === "i"){
+            if(GAMESTATE === "INVENTORY"){GAMESTATE = "MAP"}
+            else if(GAMESTATE === "MAP"){GAMESTATE = "INVENTORY"}
+        }
+        if(e.key === 'y'){updateSave()}
+    })
+    canvas.style.display = "block"
+    main()
+    player.animate()
     currMusic.play()
-})
+}
 
 let then = Date.now()
 let frame = 0
-player.animate()
-document.addEventListener('DOMContentLoaded',main)
 
 function main(){
     frame++
@@ -65,7 +130,7 @@ function main(){
     }
     else if(GAMESTATE === "INVENTORY"){
         inventory.update(keysDown)
-        inventory.draw(ctx)
+        inventory.draw(ctx,player)
     }
     else if(GAMESTATE === "BATTLE"){
         turnResult = level.battleUI.update(keysDown,frame) || turnResult
@@ -154,32 +219,6 @@ function updateMusic(){
     else if(currMusic !== mapMusic){
         currMusic.pause()
         currMusic = mapMusic
-    }
-}
-
-function save(){
-    const save = {
-        player: player,
-        inventory: inventory
-    }
-    const configObject = {
-        method: "POST",
-        headers: {
-            "Content-Type":"application/json",
-            "Accept":"application/json"
-        },
-        body: JSON.stringify(save)
-    }
-    fetch('http://localhost:3000/users',configObject).then(res => res.json()).then(json => console.log(json))
-}
-
-function loadGame(json){
-    if(json.name){
-        //player = json.player
-    }
-    else{
-        //player = new player
-        //save
     }
 }
 

@@ -3,12 +3,8 @@ import { BasicAttack, StrongAttack, Fireball, FireStorm, Inferno } from "./abili
 class Player{
     constructor(speed,x,y){
         this.level = 1
-        this.maxHp = 100
         this.hp = 100
-        this.maxMana = 50
         this.mana = 50
-        this.attack = 10
-        this.spellPower = 15
         this.xp = 0
         this.speed = speed
         this.x = x
@@ -18,7 +14,6 @@ class Player{
         this.frameIndex = [0,0]
         this.frame = 0
         this.touchingEdge = false
-        this.abilities = [new BasicAttack(this), new Fireball(this)]
     }
     
     draw(ctx){
@@ -85,15 +80,31 @@ class Player{
     levelUp(){
         this.xp = this.xp - this.xpRequired
         this.level++
-        this.maxHp += 10*this.level
-        this.maxMana +=  10*this.level
-        this.attack += 2*this.level
-        this.spellPower += 2.5*this.level
         this.hp = this.maxHp
         this.mana = this.maxMana
-        if (this.level === 3) this.abilities.push(new FireStorm(this))
-        else if(this.level === 5) this.abilities.push(new StrongAttack(this))
-        else if(this.level === 7) this.abilities.push(new Inferno(this))
+    }
+
+    get attack(){
+        return (this.level-1)*2 + 10
+    }
+
+    get maxHp(){
+        return 10*(this.level-1) + 100
+    }
+
+    get maxMana(){
+        return (this.level-1)*10 + 50
+    }
+
+    get spellPower(){
+        return (this.level-1)*2.5 + 15
+    }
+
+    get abilities(){
+        if(this.level<3) return [new BasicAttack(this),new Fireball(this)]
+        if(this.level<5) return [new BasicAttack(this),new Fireball(this),new FireStorm(this)]
+        if(this.level<7) return [new BasicAttack(this),new Fireball(this),new FireStorm(this), new StrongAttack(this)]
+        else [new BasicAttack(this),new Fireball(this),new FireStorm(this), new StrongAttack(this), new Inferno(this)]
     }
    
 
