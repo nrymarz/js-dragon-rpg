@@ -10,7 +10,6 @@ let GAMESTATE = "MAP"
 
 let level = new Level1(canvas.width,canvas.height)
 
-
 const mapMusic = document.createElement("audio")
 mapMusic.loop = true
 mapMusic.type = "audio/mpeg"
@@ -79,7 +78,11 @@ function main(){
 
 function checkBattleOver(){
     if(player.hp <= 0){
-        GAMESTATE = "MAP"
+        GAMESTATE = "PAUSED"
+        ctx.font = "80px Comic Sans"
+        ctx.fillStyle = "red"
+        ctx.fillText("You Died",260,260)
+        setTimeout( ()=> GAMESTATE = "MAP",3000)
         player.hp = 1
         player.x = 380
         player.y = 275
