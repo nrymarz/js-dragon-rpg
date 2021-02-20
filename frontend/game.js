@@ -8,7 +8,7 @@ let user
 let player 
 let inventory 
 
-const form = document.querySelector("#user-form")
+const form = document.querySelector("#form-container")
 form.addEventListener('submit',function(e){
     e.preventDefault()
     user = document.querySelector("#name").value
@@ -112,9 +112,7 @@ function startGame(){
         }
         if(e.key === 'y'){updateSave()}
     })
-    canvas.style.display = "block"
-    player.level = 30
-    player.levelUp()
+    document.querySelector("#game-container").style.display = "block"
     main()
     player.animate()
     currMusic.play()

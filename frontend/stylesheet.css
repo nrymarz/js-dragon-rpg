@@ -11,8 +11,11 @@ h2{
 canvas {
     padding: 0;
     margin: auto;
-    display: none;
+    display: block;
     border-style: solid;
     border-color:darkgrey;
     border-width: thick;
+}
+#game-container{
+    display:none;
 }

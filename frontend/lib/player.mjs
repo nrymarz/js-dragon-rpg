@@ -3,7 +3,7 @@ import { BasicAttack, StrongAttack, Fireball, FireStorm, Inferno } from "./abili
 class Player{
     constructor(speed,x,y){
         this.level = 1
-        this.hp = 100
+        this.hp = 110
         this.mana = 50
         this.xp = 0
         this.speed = speed
