@@ -1,0 +1,3 @@
+[submodule "dragon-rpg-api"]
+    path = "dragon-rpg-api"
+    url = "https://github.com/nrymarz/dragon-rpg-api.git"
