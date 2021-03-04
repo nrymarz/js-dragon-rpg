@@ -12,14 +12,20 @@ const form = document.querySelector("#form-container")
 form.addEventListener('submit',function(e){
     e.preventDefault()
     user = document.querySelector("#name").value
-    fetch(`http://localhost:3000/users/${user}`).then(res => res.json()).then(json => loadGame(json))
+    fetch(`http://localhost:3000/users/${user}`)
+        .then(res => res.json())
+        .then(json => loadGame(json))
 })
 
 function updateSave(){
     const save = {
-        name: user,
-        player: JSON.stringify(player),
-        inventory: JSON.stringify(inventory)
+        user:{
+            name: user,
+            gamesave:{
+                player: JSON.stringify(player),
+                inventory: JSON.stringify(inventory)
+            }
+        }
     }
     const configObject = {
         method: "PATCH",
@@ -34,9 +40,13 @@ function updateSave(){
 
 function save(){
     const save = {
-        name: user,
-        player: JSON.stringify(player),
-        inventory: JSON.stringify(inventory)
+        user:{
+            name: user,
+            gamesave:{
+                player: JSON.stringify(player),
+                inventory: JSON.stringify(inventory)
+            }
+        }
     }
     const configObject = {
         method: "POST",
@@ -51,14 +61,15 @@ function save(){
 
 function loadGame(json){
     if(json && json.name){
-        const playerData = JSON.parse(json.player)
+        const saveData = json.gamesaves[json.gamesaves.length - 1]
+        const playerData = JSON.parse(saveData.player)
         player = new Player(100,380,275)
         player.level = playerData.level
         player.xp = playerData.xp
         player.mana = playerData.mana
         player.hp = playerData.hp
 
-        const inventoryData = JSON.parse(json.inventory)
+        const inventoryData = JSON.parse(saveData.inventory)
         inventory = new Inventory()
         inventory.healthPotions = inventoryData.healthPotions
         inventory.manaPotions = inventoryData.manaPotions
