@@ -9,3 +9,6 @@ Then you can login with any name you want and start playing.
 
 ## Development
 I used VSCode's Liveserver to run the dragon-rpg.html page with a live server which is neccessary due to CORS problems. Other than that, there are no external libraries neccessary to run this app. 
+
+## Check It Out
+Watch a demonstration of this application here: https://www.youtube.com/watch?v=ZhbnOaCcE2E
