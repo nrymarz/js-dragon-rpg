@@ -8,4 +8,4 @@ To play this game, start the rails app in dragon-rpg-api. Then run dragon-rpg.ht
 Then you can login with any name you want and start playing.
 
 ## Development
-I used VSCode's Liveserver to run the dragon-rpg.html. Other than that, there are no external libraries neccessary to run this app. 
+I used VSCode's Liveserver to run the dragon-rpg.html page with a live server which is neccessary due to CORS problems. Other than that, there are no external libraries neccessary to run this app. 
