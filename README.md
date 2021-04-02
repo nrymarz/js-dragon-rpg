@@ -11,4 +11,5 @@ Then you can login with any name you want and start playing.
 I used VSCode's Liveserver to run the dragon-rpg.html page with a live server which is neccessary due to CORS problems. Other than that, there are no external libraries neccessary to run this app. 
 
 ## Check It Out
+Check out the Live Site on Heroku: https://dragon-adventure.herokuapp.com/
 Watch a demonstration of this application here: https://www.youtube.com/watch?v=ZhbnOaCcE2E
