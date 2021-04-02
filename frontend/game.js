@@ -12,7 +12,7 @@ const form = document.querySelector("#form-container")
 form.addEventListener('submit',function(e){
     e.preventDefault()
     user = document.querySelector("#name").value
-    fetch(`https://blueberry-crumble-90818.herokuapp.com//users/${user}`)
+    fetch(`https://blueberry-crumble-90818.herokuapp.com/users/${user}`)
         .then(res => res.json())
         .then(json => loadGame(json))
 })
@@ -35,7 +35,8 @@ function updateSave(){
         },
         body: JSON.stringify(save)
     }
-    fetch(`https://blueberry-crumble-90818.herokuapp.com//users/${user}`,configObject)
+    fetch(`https://blueberry-crumble-90818.herokuapp.com/users/${user}`,configObject)
+        .then(res =>  console.log(res))
 }
 
 function save(){
