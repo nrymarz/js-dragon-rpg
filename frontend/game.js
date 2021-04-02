@@ -7,10 +7,12 @@ const ctx = canvas.getContext("2d")
 let user
 let player 
 let inventory 
+//https://blueberry-crumble-90818.herokuapp.com/
 
 const form = document.querySelector("#form-container")
 form.addEventListener('submit',function(e){
     e.preventDefault()
+    form.style.display = "none"
     user = document.querySelector("#name").value
     fetch(`https://blueberry-crumble-90818.herokuapp.com/users/${user}`)
         .then(res => res.json())
@@ -28,7 +30,7 @@ function updateSave(){
         }
     }
     const configObject = {
-        method: "PATCH",
+        method: "POST",
         headers: {
             "Content-Type":"application/json",
             "Accept":"application/json"
@@ -36,7 +38,7 @@ function updateSave(){
         body: JSON.stringify(save)
     }
     fetch(`https://blueberry-crumble-90818.herokuapp.com/users/${user}`,configObject)
-        .then(res =>  console.log(res))
+        .then(res =>  res.json()).then(json => console.log(json))
 }
 
 function save(){
@@ -113,7 +115,6 @@ const keysDown = {}
 let turnResult = ''
 
 function startGame(){
-    form.style.display = "none"
 
     addEventListener('keydown',e => keysDown[e.key] = true)
     addEventListener('keyup',e => delete keysDown[e.key])
