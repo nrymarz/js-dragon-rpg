@@ -1,4 +1,4 @@
-import Player from './lib/player.mjs'
+import Player from './lib/player.js'
 import {Level1, Level2, Level3, BossLevel} from './lib/level.js'
 import Inventory from './lib/inventory.js'
 
